@@ -7,9 +7,9 @@ app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 def initDB ():
     client = MongoClient()
     db = client.test
-    db.createCollection("login")
-    db.createCollection("usuarios")
-    db.createCollection("articulos")
+    db.create_collection("login")
+    db.create_collection("usuarios")
+    db.create_collection("articulos")
     return db
 
 database = initDB()
@@ -29,7 +29,7 @@ def login():
 @app.route('/pic', methods=['POST'])
 def image():
 	logo = request.form['to_logo']
-	return render_template('logo.html', logo = logo, tipo = session["tipo"])
+	return render_template('logo.html', logo = logo)
 
 
 if __name__ == '__main__':
