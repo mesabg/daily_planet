@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 # MongoDB Connection with PyMongo
 def initDB ():
     client = MongoClient()
-    db = client.test
+    db = client.daily_planet_db
     db.create_collection("login")
     db.create_collection("usuarios")
     db.create_collection("articulos")
