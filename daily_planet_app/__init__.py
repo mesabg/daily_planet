@@ -7,10 +7,10 @@ app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 def initDB ():
     client = MongoClient()
     db = client.daily_planet_db
-    db.create_collection("login")
+""" db.create_collection("login")
     db.create_collection("usuarios")
     db.create_collection("articulos")
-    return db
+""" return db
 
 database = initDB()
 
