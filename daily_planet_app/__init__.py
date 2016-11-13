@@ -23,12 +23,7 @@ def index():
 def login():
 	email = request.form['email']
 	password  = request.form['password']
-    """
-	hero = superheroes.find_one({ "superhero": superhero })
 
-	if hero["alter_ego"] == password:
-		return render_template('hello.html', nombre = superhero, logo=hero["logo"])
-	"""
 	return render_template('index.html')
 
 @app.route('/pic', methods=['POST'])
