@@ -1,0 +1,30 @@
+#profile{
+	background-color: #00A78E;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	color: white;
+}
+
+#profile .separator{
+	border-width: 1px;
+	border-bottom: black;
+	border-style: none none solid none;
+	padding-bottom: 1%;
+}
+
+.internal_data{
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+#profile .separator_last{
+	border-style: none;
+	padding-bottom: 1%;
+}
+
+.container_{
+	margin-left: 20%;
+	margin-right: 20%;
+}
