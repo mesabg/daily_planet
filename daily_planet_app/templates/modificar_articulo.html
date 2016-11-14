@@ -1,73 +1,11 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title> Daily Planet</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="Forward Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-		<!-- js -->
-		<script src="js/jquery.min.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-		<!-- js -->
-		<!-- start-smoth-scrolling -->
-		<script type="text/javascript" src="js/move-top.js"></script>
-		<script type="text/javascript" src="js/easing.js"></script>
-		<script type="text/javascript">
-		jQuery(document).ready(function($) {
-					$(".scroll").click(function(event){
-				event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
-		});
-		</script>
-		<!-- start-smoth-scrolling -->
-	</head>
-	<!-- header -->
-	<div class="header navbar-fixed-top" >
-		<div class="header navbar-fixed-top" >
-			<div class="header-top">
-				<!-- container -->
-				<div class="container">
-					<div class="header-top-left">
-						<ul>
-							<li><a href="index.html">PRINCIPAL</a></li>
-							<li><a href="index.html">DESTACADOS</a></li>
-							<li><a href="articulos_publicados.html">ARTICULOS PUBLICADOS</a></li>
-							<li><a href="articulos_no_publicados.html">ARTICULOS NO PUBLICADOS</a></li>
-							<li><a href="#">AYUDA</a><li>
-						</ul>
-					</div>
-					<div class="header-top-right">
-						<form>
-							<a href="perfil.html" class="btn fix-btn">Mi perfil</a>
-							<input type="text" placeholder=" " required="">
-							<input type="submit" value=" ">
-							<div class="clearfix"> </div>
-						</form>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<!-- //container -->
-			</div>
-			
-			<div class="blue"> </div>
-		</div>
-		
-		<div class="blue"> </div>
-	</div>
-	<body style="padding-top: 80px;">
-		<!-- //header -->
-		<!-- blog -->
-		
+{% extends "layout.html" %}
+
+	{% block content %}
+	
 		<div class="blog">
 			<!-- container -->
 			<div class="container">
-				<form>
+				<form action="/modificar_articulo_save" method="POST">
 					<div class="col-md-12 blog-top-left-grid">
 						<div class="left-blog left-single">
 							<div class="blog-left">
@@ -130,64 +68,6 @@
 			<!-- //container -->
 		</div>
 		<!-- //blog -->
-		<!-- footer -->
-		<div class="footer">
-			<!-- container -->
-			<div class="container">
-				<div class="footer-top">
-					<div class="footer-grids">
-						<div class="col-md-3 f-address">
-							<h5>Dirección</h5>
-							<ul>
-								<li>Algún lugar</li>
-								<li>En alguna calle</li>
-								<li>En algun sitio especifico</li>
-								<li>E-mail : <a href="mailto:example@email.com">dailyplanet@gmail.com</a></li>
-							</ul>
-						</div>
-						<div class="col-md-6 f-address f-contact">
-							<h5>Suscribete</h5>
-							<form>
-								<input type="text" placeholder="Correo electrónico" required="">
-								<input type="submit" value="Suscribir">
-							</form>
-						</div>
-						<div class="col-md-3 footer-logo">
-							<a href="index.html">DailyPlanet</a>
-							<div class="footer-left">
-								<ul>
-									<li><a class="facebook" href="#"></a></li>
-									<li><a class="twitter" href="#"></a></li>
-									<li><a class="linked-in" href="#"></a></li>
-									<li><a class="you-tube" href="#"></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="footer-bottom">
-						<div class="copyright">
-							<p>© 2015 DailyPlanet. All Rights Reserved</p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</div>
-			</div>
-			<!-- //container -->
-		</div>
-		<!-- //footer -->
-		<script type="text/javascript">
-									$(document).ready(function() {
-										
-										$().UItoTop({ easingType: 'easeOutQuart' });
-										
-									});
-									function modify(){
-										if (confirm("El articulo hasido moficado correctamente!"))
-											window.location.assign('index.html');
-									}
-		</script>
-		<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-		<!-- content-Get-in-touch -->
-	</body>
-</html>
+		
+		{% endblock %}
+

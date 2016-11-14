@@ -42,16 +42,15 @@
 				<div class="container">
 					<div class="header-top-left">
 						<ul>
-							<li><a href="index.html">PRINCIPAL</a></li>
-							<li><a href="#">DESTACADOS</a></li>
+							<li><a href="/">PRINCIPAL</a></li>
+							<li><a href="/articulos_publicados">DESTACADOS</a></li>
 							<li><a href="#" role="button" data-toggle="modal" data-target="#login-modal" onclick="login()">INICIAR SESIÓN</a></li>
-							<li><a href="registro.html">REGISTRARSE</a><li>
-							<li><a href="#">AYUDA</a><li>
+							<li><a href="/registro">REGISTRARSE</a><li>
 						</ul>
 					</div>
 					<div class="header-top-right">
 						<form>
-							<a href="perfil.html" class="btn fix-btn">Mi perfil</a>
+							<a href="/perfil" class="btn fix-btn">MI PERFIL</a>
 							<input type="text" placeholder=" " required="">
 							<input type="submit" value=" ">
 							<div class="clearfix"> </div>
@@ -90,7 +89,7 @@
 							</div>
 							<div class="col-md-6 f-address f-contact">
 								<h5>Suscribete</h5>
-								<form>
+								<form action="/opexito">
 									<input type="text" placeholder="Correo electrónico" required="">
 									<input type="submit" value="Suscribir">
 								</form>
@@ -120,7 +119,7 @@
 			</div>
 		</div>
 		
-		<!-- //footer -->
+		
 		<div class="groupforms">
 			<div class="login" style="visibility: hidden;">
 				<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
@@ -131,7 +130,7 @@
 								<h1 class="text-center"><i>Iniciar Sesión</i></h1>
 							</div>
 							<div class="modal-body">
-								<form class="form col-md-12 center-block">
+								<form action="/login" method="POST" class="form col-md-12 center-block">
 									<div class="form-group">
 										<input type="text" class="form-control" placeholder="Email" name="email">
 									</div>
@@ -162,7 +161,7 @@
 								<h1 class="text-center"><i>Recuperar Contraseña</i></h1>
 							</div>
 							<div class="modal-body">
-								<form class="form col-md-12 center-block">
+								<form class="form col-md-12 center-block" method="POST" action="/recuperar_contrasena">
 									<div class="form-group">
 										<input type="text" class="form-control" placeholder="Email" name="recoverpass_email">
 									</div>

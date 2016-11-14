@@ -84,3 +84,13 @@ function forgetpass() {
         }
     }
 }
+
+
+function publicar(element){
+    var form = {
+        nombre: element.getElementsByClassName('Nombre')[1].innerHTML,
+        fecha: element.getElementsByClassName('Fecha')[1].innerHTML
+    }
+    
+    $.post( "/crear_save", form );
+}
