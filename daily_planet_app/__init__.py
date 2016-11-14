@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from pymongo import *
  
-app = Flask(__name__, template_folder = 'templates', static = 'static')
+app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
 # MongoDB Connection with PyMongo
 def initDB ():
