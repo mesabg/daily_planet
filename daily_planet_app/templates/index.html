@@ -1,7 +1,6 @@
-{% extends "cabecera.html" %}
-			<center><div style="margin-bottom: -60px">
-				<img src="images/logo.png" class="img-responsive">
-			</div></center>
+{% extends "layout.html" %}
+
+	{% block content %}
 			<div class="banner-bottom">
 				<!-- container -->
 				<div class="container">
@@ -47,7 +46,4 @@
 			<center> <button class="cargar">Cargar Más</button> </center>
 			<!-- //banner-bottom -->
 			<!-- footer -->
-			{% extends "footer.html" %}
-		</div>
-		{% extends "login.html" %}
-		{% extends "end.html" %}
+	{% endblock %}
