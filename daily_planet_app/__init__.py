@@ -6,10 +6,10 @@ from models import *
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
 #Create Database
-db = Model();
+model = Model();
 
 #Create Routes
-create_routes(app, db)
+create_routes(app, model)
 
 if __name__ == '__main__':
 	app.debug = True

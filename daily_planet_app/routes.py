@@ -1,6 +1,8 @@
 from flask import render_template, request
+from models import *
 
-def create_routes(app, db):
+
+def create_routes(app, model):
     #Routes Definition
     @app.route('/')
     def index():
