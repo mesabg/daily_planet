@@ -1,8 +1,8 @@
 db = db.getSiblingDB('daily_planet_db');
 print("-----Inicializando la base de datos-----");
 
-db.create_collection("usuarios");
-db.create_collection("articulos");
+db.createCollection("usuarios");
+db.createCollection("articulos");
 
 
 var array_usuarios = [
