@@ -5,7 +5,7 @@ from models import *
 #Create Flask Application
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
-#Create Database
+#Create Database Model
 model = Model();
 
 #Create Routes
