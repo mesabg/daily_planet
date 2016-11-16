@@ -9,6 +9,8 @@ class Model:
         
     def getSixFeed(self, inicio):
         save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'cuerpo':1 }}]))
+        
+        print(save[0])
         array = []
         
         for i in range(0, 6):
