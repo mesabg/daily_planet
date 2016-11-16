@@ -19,4 +19,6 @@ class Model:
         return array
         
     def getSingle(self, _id_):
-        return self.db.articulos.find_one({'_id':{'$eq':_id_}},{ '_id':1, 'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1 })
+        save = self.db.articulos.find_one({'_id':{'$eq':_id_}},{ '_id':1, 'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1 })
+        print(save)
+        return save
