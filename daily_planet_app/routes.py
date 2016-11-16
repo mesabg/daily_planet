@@ -103,3 +103,20 @@ def create_routes(app, model):
         valor = spli[len(spli)-1] 
         return send_file(path, mimetype='image/'+valor)
         #http://localhost:5000/get_image?path=local_images/art/2.jpg
+        
+    @app.route('/get_image_username', methods=['GET'])
+    def get_image_username():
+        name = request.args.get('name')
+        path = 'static/' + model.get_image_username(name)
+        spli = path.split(".")
+        valor = spli[len(spli)-1] 
+        return send_file(path, mimetype='image/'+valor)
+        
+        
+        
+        
+        
+        
+        
+        
+        
