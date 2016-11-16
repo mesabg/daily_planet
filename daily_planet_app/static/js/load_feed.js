@@ -18,7 +18,7 @@ function load_more(){
         console.log(data);
         for(var i=0; i<data.length;i++){
             var div = $('<div class="col-md-4 banner-bottom-grid"> <a href="/single?id='+data[i]._id+'"> <h4>'+data[i].nombre+'</h4> <p>'+data[i].cuerpo+'</p> </a></div>');
-            $("feed").append(div);
+            $("#feed").append(div);
         }
         if(data.length < 6){
             var boton = document.getElementById("load_more");
