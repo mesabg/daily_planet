@@ -91,5 +91,7 @@ def create_routes(app, model):
     @app.route('/get_image', methods=['GET'])
     def get_image():
         path = 'static/' + request.args.get('path')
-        return send_file(path, mimetype='image/jpg')
+        spli = path.split(".")
+        valor = spli[spli.length-1] 
+        return send_file(path, mimetype='image/'+valor)
         #http://localhost:5000/get_image?path=local_images/art/2.jpg
