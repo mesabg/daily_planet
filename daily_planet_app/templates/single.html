@@ -36,7 +36,7 @@
 						</div>
 						<div class="response">
 							<h3>Comentarios</h3>
-							{% for comentario in item.comentarios recursive %}
+							{% for comentario in item['comentarios'] recursive %}
 							        {% if comentario.respuestas %}
 							                <div class="media-left response-text-left">
 							                	<img class="media-object" src="images/icon1.png" alt=""> <!-- Aqui cambiar la ruta -->
