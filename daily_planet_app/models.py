@@ -22,3 +22,5 @@ class Model:
         save = self.db.articulos.find({'_id':{'$eq':_id_}})
         print(save)
         return save
+        
+        # REVISAR RICARDO 
