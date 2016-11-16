@@ -19,7 +19,7 @@ class Model:
         return array
         
     def getSingle(self, _id_):
-        save = self.db.articulos.find({'_id':{'$eq':_id_}})
+        save = self.db.articulos.find({'_id':{'$eq':'1'}})
         print(save)
         return save
         
