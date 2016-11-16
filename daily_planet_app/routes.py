@@ -91,10 +91,5 @@ def create_routes(app, model):
     @app.route('/get_image', methods=['GET'])
     def get_image():
         path = 'static/' + request.args.get('path')
-        # Open a file
-        fo = open(path, "r")
-        data = fo.read();
-        # Close opend file
-        fo.close()
-        return Response(data, status=200, headers=None, mimetype='image/jpg')
-    
+        return send_file(path, mimetype='image/jpg')
+        #http://localhost:5000/get_image?path=local_images/art/2.jpg
