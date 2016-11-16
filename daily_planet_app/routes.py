@@ -37,9 +37,12 @@ def create_routes(app, model):
     def single():
         _id = int(request.args.get('id'))
         l = model.getSingle(_id)
-        print (l)
-        print (list(l['comentarios']))
-        return render_template('single.html', item=model.getSingle(_id))
+        data = None        
+        for doc in l:
+            data = doc
+        print (data)
+      #  print (list(l['comentarios']))
+        return render_template('single.html', item=data)
         
    
         
