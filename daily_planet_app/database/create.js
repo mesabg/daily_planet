@@ -11,7 +11,7 @@ var array_usuarios = [
         correo: "ricardo@gmail.com",
         password: 123456789,
         tipo: "editor",  
-        avatar: "user_images/1.png",
+        avatar: "local_images/user/1.png",
         descripcion: "Hola mi nombre es ricardo :)"
     },
     {
@@ -19,7 +19,7 @@ var array_usuarios = [
         correo: "moises@gmail.com",
         password: 123456789,
         tipo: "autor",
-        avatar: "user_images/2.png",
+        avatar: "local_images/user/2.png",
         descripcion: "Hola yo soy moises :D"
     }
 ]
@@ -44,7 +44,8 @@ var array_articulos = [
             } 
         ],
         fecha: new Date("October 10 2006 00:00:00"),
-        categoria: "Noticias"
+        categoria: "Noticias",
+        imagen: "local_images/art/1.png"
     },{
         _id: 2,
         nombre: "Articulo no tan interesante",
@@ -55,7 +56,8 @@ var array_articulos = [
         cuerpo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id metus non lectus posuere sollicitudin. Nullam venenatis, turpis ac mperdiet dignissim, nisi lectus rhoncus diam, ac malesuada felis augue at lectus. Integer eu justo in nulla hendrerit venenatis eget vel tellus. Sed tincidunt, odio a tincidunt sodales, augue risus sodales velit, sit amet rutrum mauris eros id lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan lectus sed dolor convallis, ut ultricies arcu pretium. Morbi commodo consequat quam ac blandit. Fusce sodales pretium tortor id congue. Quisque et auctor odio. Fusce sem lorem, blandit ac imperdiet et, auctor eget ligula. Quisque ac felis est. Mauris gravida lacinia ex, a euismod eros faucibus at. Cras eget suscipit enim. Aliquam a faucibus dolor.Vivamus at mattis quam. Donec at luctus diam. Sed malesuada maximus tortor. Proin sodales lobortis lectus, sed pellentesque neque volutpat eget. Suspendisse vitae tellus ex. Duis fermentum ligula sem, ut bibendum eros bibendum vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In vulputate tortor diam. Proin finibus dignissim odio quis maximus.",
         comentarios:  [],
         fecha: new Date("October 12 2006 00:00:00"),
-        categoria: "Intereses"
+        categoria: "Intereses",
+        imagen: "local_images/art/2.png"
     }
 ]
 

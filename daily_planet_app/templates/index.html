@@ -7,43 +7,17 @@
 					<div class="banner-bottom-info">
 						<h3>Artículos Recientes</h3>
 					</div>
-					<div class="banner-bottom-grids">
-						<div class="col-md-4 banner-bottom-grid">
-							<a href="single.html"><img src="{{ url_for('static', filename='images/c3.jpg') }}" alt="" /></a>
-							<h4>Ejemplo Noticia 1</h4>
-							<p>Lorem Ipsum is simply dummy text
-								of the printing and typesetting industry.
-								Lorem Ipsum has been the industry's
-								dummy text ever since the 1500s,
-								including versions of Lorem Ipsum.
-							</p>
-						</div>
-						<div class="col-md-4 banner-bottom-grid">
-							<a href="#"><img src="images/c1.jpg" alt="" /></a>
-							<h4>Ejemplo Noticia 2</h4>
-							<p>Lorem Ipsum is simply dummy text
-								of the printing and typesetting industry.
-								Lorem Ipsum has been the industry's
-								dummy text ever since the 1500s,
-								including versions of Lorem Ipsum.
-							</p>
-						</div>
-						<div class="col-md-4 banner-bottom-grid">
-							<a href="#"><img src="images/c2.jpg" alt="" /></a>
-							<h4>Ejemplo Noticia 3</h4>
-							<p>Lorem Ipsum is simply dummy text
-								of the printing and typesetting industry.
-								Lorem Ipsum has been the industry's
-								dummy text ever since the 1500s,
-								including versions of Lorem Ipsum.
-							</p>
-						</div>
-						<div class="clearfix"> </div>
+					<div id="feed" name="feed" class="banner-bottom-grids">
+						<!--<div class="clearfix"> </div>-->
 					</div>
 				</div>
 				<!-- //container -->
 			</div>
-			<center> <button class="cargar">Cargar Más</button> </center>
+			<center> <button id="load_more" class="cargar" action="load_more()">Cargar Más</button> </center>
 			<!-- //banner-bottom -->
 			<!-- footer -->
+	{% endblock %}
+	
+	{% block scripts %}
+		<script type="text/javascript" src="{{ url_for('static', filename='js/load_feed.js') }}"></script>
 	{% endblock %}

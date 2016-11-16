@@ -80,3 +80,12 @@ def create_routes(app, model):
     @app.route('/perfil')
     def perfil():
         return render_template('perfil.html', usuario="Nombre")
+        
+    @app.route('/get_feed', methods=['GET'])
+    def get_feed():
+        n_elem = request.args.get('number_elements') - 6
+        return model.getSixFeed(n_elem)
+    
+    
+    
+    
