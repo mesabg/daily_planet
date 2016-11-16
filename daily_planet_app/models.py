@@ -19,8 +19,9 @@ class Model:
         return array
         
     def getSingle(self, _id_):
-        save = self.db.articulos.find_one({'_id':{'$eq':'1'}})
+        save = self.db.articulos.find_one({'_id':{'$eq':1}})
         print(save)
         return save
         
         # REVISAR RICARDO 
+        # db.articulos.findOne({'_id':{'$eq':'1'}})
