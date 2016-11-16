@@ -19,9 +19,4 @@ class Model:
         return array
         
     def getSingle(self, _id_):
-        save = self.db.articulos.find_one({'_id':{'$eq':int(_id_)}})
-        print(save)
-        return save
-        
-        # REVISAR RICARDO 
-        # db.articulos.findOne({'_id':{'$eq':'1'}})
+        return self.db.articulos.find_one({'_id':{'$eq':int(_id_)}})
