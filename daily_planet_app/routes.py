@@ -88,4 +88,13 @@ def create_routes(app, model):
         data = json.dumps( model.getSixFeed(n_elem) )
         return Response(data, status=200, headers=None, mimetype='application/json')
     
+    @app.route('/get_image', methods=['GET'])
+    def get_image():
+        path = 'static/' + request.args.get('path')
+        # Open a file
+        fo = open(path, "r")
+        data = fo.read();
+        # Close opend file
+        fo.close()
+        return Response(data, status=200, headers=None, mimetype='image/jpg')
     
