@@ -25,4 +25,5 @@ class Model:
         
         
     def get_image_usermane(self,name):
-        return self.db.articulos.find_one({'nombre':{'$eq':name}},{'_id':0,'avatar':1})
+        data = self.db.usuarios.find_one({'nombre':{'$eq':name}},{'_id':0,'avatar':1})
+        return data.avatar
