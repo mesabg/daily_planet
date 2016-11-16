@@ -19,7 +19,7 @@ class Model:
         return array
         
     def getSingle(self, _id_):
-        save = list(self.db.articulos.aggregate([{'$match': {'_id': {'$eq':_id_}}},{'$project':{ '_id':1, 'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1 }}]))
+        save = self.db.articulos.aggregate([{'$match': {'_id': {'$eq':_id_}}},{'$project':{ '_id':1, 'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1 }}])
         print(save)
         print(len(save))
         array = list()
