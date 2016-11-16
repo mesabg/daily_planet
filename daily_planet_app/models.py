@@ -26,4 +26,4 @@ class Model:
         
     def get_image_username(self,name):
         data = self.db.usuarios.find_one({'nombre':{'$eq':name}},{'_id':0,'avatar':1})
-        return data.avatar
+        return data['avatar']
