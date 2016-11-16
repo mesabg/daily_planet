@@ -24,6 +24,6 @@ class Model:
         #db.articulos.aggregate([ {'$match': {'_id': {'$eq':1}}} ,{ '$project':{'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1  }} ])
         
         
-    def get_image_usermane(self,name):
+    def get_image_username(self,name):
         data = self.db.usuarios.find_one({'nombre':{'$eq':name}},{'_id':0,'avatar':1})
         return data.avatar
