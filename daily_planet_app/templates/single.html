@@ -25,105 +25,70 @@
 					<div class="left-blog left-single">
 						<div class="blog-left">
 							<div class="single-left-left">
-								<p>Autor <a href="#">Admin</a> &nbsp;&nbsp;el 2 de Julio, 2015 &nbsp;&nbsp; <a href="#">Comentarios (3)</a></p>
-								<h3>Título</h3>
+								<p>Autor <a href="#">{{item.autor}}</a> &nbsp;&nbsp;{{item.fecha}} &nbsp;&nbsp; <a href="#">Comentarios ({{item.comentarios.length}})</a></p>
+								<h3>{{item.nombre}}</h3>
 								<img src="images/c3.jpg" alt="" />
-								
-							</div>							
-							
+							</div>
 							<div class="blog-left-bottom">
-								<P>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-									dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-									fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .
-								</P>
-							</div>
-							<div class="blog-left-bottom left-bottom">
-								<P>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-									dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-									fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .
-								</P>
-							</div>
-							<div class="blog-left-bottom left-bottom">
-								<P>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-									dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-									fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .
+								<P> {{item.cuerpo}}
 								</P>
 							</div>
 						</div>
 						<div class="response">
 							<h3>Comentarios</h3>
-							<div class="media response-info">
-								<div class="media-left response-text-left">
-									<a href="#">
-										<img class="media-object" src="images/icon1.png" alt="">
-									</a>
-									<h5><a href="#">Admin</a></h5>
-								</div>
-								<div class="media-body response-text-right">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-										sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-									<ul>
-										<li>21 de Julio, 2015</li>
-										<li><a href="single.html">Responder</a></li>
-									</ul>
-									<div class="media response-info">
-										<div class="media-left response-text-left">
-											<a href="#">
-												<img class="media-object" src="images/icon1.png" alt="">
-											</a>
-											<h5><a href="#">Admin</a></h5>
-										</div>
-										<div class="media-body response-text-right">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-												sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-											<ul>
-												<li>21 de Julio, 2015</li>
-												<li><a href="single.html">Responder</a></li>
-											</ul>		
-										</div>
-										<div class="clearfix"> </div>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
+						
+							
+							{% for comentario in item.comentarios recursive %}
+							        {% if comentario.respuestas %}
+							                <div class="media-left response-text-left">
+							                	<img class="media-object" src="images/icon1.png" alt=""> <!-- Aqui cambiar la ruta -->
+							                	<h5>comentario.nombre</h5>
+							                </div>
+							                
+							                <div class="media-body response-text-right">
+							                	<p>comentario.cuerpo</p>
+							                </div>
+							                <ul>
+							                	<li>comentario.fecha</li>
+							                	<li><a href="#">Responder</a></li>
+							                </ul>
+							                
+							                <div class="media response-info">
+							                	{{loop(comentario.respuestas)}}
+							                </div>
+							        {% else %}
+							               <div class="media-left response-text-left">
+							                	<img class="media-object" src="images/icon1.png" alt=""> <!-- Aqui cambiar la ruta -->
+							                	<h5>comentario.nombre</h5>
+							                </div>
+							                
+							                <div class="media-body response-text-right">
+							                	<p>comentario.cuerpo</p>
+							                </div>
+							                <ul>
+							                	<li>comentario.fecha</li>
+							                	<li><a href="#">Responder</a></li>
+							                </ul>
+							        {% endif %}
+							{% endfor %}
+							
+							<div class="opinion">
+								<h3>Deja tu comentario</h3>
+								<form>
+									<textarea placeholder="Mensaje" required=""></textarea>
+									<input type="submit" value="ENVIAR">
+								</form>
 							</div>
-							<div class="media response-info">
-								<div class="media-left response-text-left">
-									<a href="#">
-										<img class="media-object" src="images/icon1.png" alt="">
-									</a>
-									<h5><a href="#">Admin</a></h5>
-								</div>
-								<div class="media-body response-text-right">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-										sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-									<ul>
-										<li>21 de Julio, 2015</li>
-										<li><a href="single.html">Responder</a></li>
-									</ul>		
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div class="opinion">
-							<h3>Deja tu comentario</h3>
-							<form>
-								<input type="text" placeholder="Nombre" required="">
-								<textarea placeholder="Mensaje" required=""></textarea>
-								<input type="submit" value="ENVIAR">
-							</form>
-						</div>
 					</div>
 				</div>
+				
+				
+				
 				<div class="col-md-3 blog-top-right-grid">
 					<div class="Categories">
 						<h3>Categorías</h3>
 						<ul>
-							<li><a href="#">Phasellus sem leo, interdum quis risus</a></li>
-							<li><a href="#">Nullam egestas nisi id malesuada aliquet </a></li>
-							<li><a href="#"> Donec condimentum purus urna venenatis</a></li>
-							<li><a href="#">Ut congue, nisl id tincidunt lobor mollis</a></li>
-							<li><a href="#">Cum sociis natoque penatibus et magnis</a></li>
-							<li><a href="#">Suspendisse nec magna id ex pretium</a></li>
+							<li><a href="#">item.categoria</a></li>
 						</ul>
 					</div>
 					

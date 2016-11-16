@@ -10,7 +10,6 @@ jQuery(document).ready(function($) {
 
 
 function load_more(){
-    alert("Hola Mundo! =)");
     $.ajax({
         url: '/get_feed',
         type: 'GET',

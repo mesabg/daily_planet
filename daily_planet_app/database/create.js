@@ -11,6 +11,7 @@ var array_usuarios = [
         correo: "ricardo@gmail.com",
         password: 123456789,
         tipo: "editor",  
+        nombre: "Ricardo",
         avatar: "local_images/user/1.png",
         descripcion: "Hola mi nombre es ricardo :)"
     },
@@ -19,6 +20,7 @@ var array_usuarios = [
         correo: "moises@gmail.com",
         password: 123456789,
         tipo: "autor",
+        nombre: "Moises",
         avatar: "local_images/user/2.png",
         descripcion: "Hola yo soy moises :D"
     }
@@ -38,12 +40,30 @@ var array_articulos = [
         comentarios:  [
             {
              _id: 1, 
-             cuerpo: "asfasfas fasfas muy bueno"      
-            },{
-             _id: 2,
-             cuerpo: ":) excelente"
-            } 
-        ],
+             nombre: "Ricardo",
+             cuerpo: "asfasfas fasfas muy bueno",
+             fecha: new Date("October 10 2006 00:00:00"),
+             respuestas: [{
+                     _id: 2,
+                     nombre: "Moises",
+                     cuerpo: ":) excelente",
+                     fecha: new Date("October 13 2006 00:00:00"),
+                     respuestas: []
+                     
+                    } ,{
+                     _id: 3,
+                     nombre: "Moises",
+                     cuerpo: ":) perfecto",
+                     fecha: new Date("October 13 2006 00:00:00"),
+                     respuestas: []
+                    }],
+              },{
+               _id: 4,
+                 nombre: "Moises",
+                 cuerpo: ":) oh vaya",
+                 fecha: new Date("October 15 2006 00:00:00"),
+                 respuestas: [] 
+            }],
         fecha: new Date("October 10 2006 00:00:00"),
         categoria: "Noticias",
         imagen: "local_images/art/1.jpg"
