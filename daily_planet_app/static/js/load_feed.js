@@ -15,6 +15,7 @@ function load_more(){
     })
     .done(function(data) {
         /*Render*/
+        console.log(data, args);
         for(var i=0; i<data.length;i++){
             var div = $('<div class="col-md-4 banner-bottom-grid"> <a href="/single?id='+data[i]._id+'"> <img src="{{ url_for("static", filename="'+data[i].imagen+'") }}" alt="" /> <h4>'+data[i].nombre+'</h4> <p>'+data[i].cuerpo+'</p> </a></div>');
             $("feed").append(div);

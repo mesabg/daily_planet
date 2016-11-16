@@ -84,8 +84,7 @@ def create_routes(app, model):
     @app.route('/get_feed', methods=['GET'])
     def get_feed():
         n_elem = int(request.args.get('number_elements')) - 6
-        return model.getSixFeed(n_elem)
-    
-    
+        data = json.dumps( model.getSixFeed(n_elem) )
+        return Response(data, status=200, headers=None, mimetype='application/json')
     
     
