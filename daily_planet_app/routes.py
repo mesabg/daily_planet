@@ -36,7 +36,8 @@ def create_routes(app, model):
     @app.route('/single', methods=['GET'])
     def single():
         _id = int(request.args.get('id'))
-        print(model.getSingle(_id))
+        l = list(model.getSingle(_id).comentarios)
+        print (l)
         return render_template('single.html', item=model.getSingle(_id))
         
    
