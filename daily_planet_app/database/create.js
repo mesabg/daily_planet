@@ -45,7 +45,7 @@ var array_articulos = [
         ],
         fecha: new Date("October 10 2006 00:00:00"),
         categoria: "Noticias",
-        imagen: "local_images/art/1.png"
+        imagen: "local_images/art/1.jpg"
     },{
         _id: 2,
         nombre: "Articulo no tan interesante",
@@ -57,7 +57,7 @@ var array_articulos = [
         comentarios:  [],
         fecha: new Date("October 12 2006 00:00:00"),
         categoria: "Intereses",
-        imagen: "local_images/art/2.png"
+        imagen: "local_images/art/2.jpg"
     }
 ]
 
