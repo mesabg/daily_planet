@@ -38,6 +38,7 @@ def create_routes(app, model):
         _id = request.args.get('id')
         return render_template('single.html', item=model.getSingle(_id))
         
+   
         
     @app.route('/crear')
     def crear():
