@@ -36,8 +36,6 @@
 						</div>
 						<div class="response">
 							<h3>Comentarios</h3>
-						
-							
 							{% for comentario in item.comentarios recursive %}
 							        {% if comentario.respuestas %}
 							                <div class="media-left response-text-left">
@@ -71,7 +69,6 @@
 							                </ul>
 							        {% endif %}
 							{% endfor %}
-							
 							<div class="opinion">
 								<h3>Deja tu comentario</h3>
 								<form>
