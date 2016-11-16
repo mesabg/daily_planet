@@ -35,7 +35,8 @@ def create_routes(app, model):
     
     @app.route('/single', methods=['GET'])
     def single():
-        _id = request.args.get('id')
+        _id = int(request.args.get('id'))
+        print(model.getSingle(_id))
         return render_template('single.html', item=model.getSingle(_id))
         
    

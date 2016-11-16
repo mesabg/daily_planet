@@ -19,4 +19,4 @@ class Model:
         return array
         
     def getSingle(self, _id_):
-        return self.db.articulos.find_one({'_id':{'$eq':int(_id_)}})
+        return self.db.articulos.find_one({'_id':{'$eq':_id_}})
