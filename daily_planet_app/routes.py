@@ -38,7 +38,7 @@ def create_routes(app, model):
         _id = int(request.args.get('id'))
         l = model.getSingle(_id)
         print (l)
-        print (l.comentarios)
+        print (dict(l.comentarios))
         return render_template('single.html', item=model.getSingle(_id))
         
    
