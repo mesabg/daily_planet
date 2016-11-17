@@ -34,7 +34,8 @@ class Model:
         _idcomment = int (self.db.articulos.find_one({'_id':{'$eq':id_articulo}})['n_comment']) + 1
         self.db.articulos.update({'_id':id_articulo},{ '$inc': { 'n_comment': _idcomment }})
         data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':str(datetime.datetime.now()),'respuestas':[] }
-        self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data}})
+        data_ = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':datetime.datetime.now(),'respuestas':[] }
+        self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
         return data
         
         
