@@ -20,11 +20,11 @@ def create_routes(app, model, name):
     def login():
     	email = request.form['correo']
     	password  = request.form['password']
-    	log_in = model.login(email, password)
+    	#log_in = model.login(email, password)
     	#if not log_in:
     	#    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
     	session['user'] = 'Holaaa'
-    	return render_template('perfil.html', user=session['user'] )
+    	return render_template('perfil.html' )
     	
     @app.route('/logout')
     def logout():
