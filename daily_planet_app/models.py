@@ -39,7 +39,7 @@ class Model:
         
         for lista in save:
             if not lista['publicado']:
-                variable = {'nombre':lista['nombre'],'fecha':str(lista['fecha']),'editando':lista['editando'],'publicado':lista['publicado'],'_id':lista['_id'],'imagen':lista['imagen'],'cuerpo':lista['cuerpo'],'palabras':lista['palabras']}
+                variable = {'nombre':lista['nombre'],'fecha':str(lista['fecha']),'editando':lista['editando'],'publicado':lista['publicado'],'_id':lista['_id'],'imagen':lista['imagen'],'cuerpo':lista['cuerpo'],'palabras':lista['palabras'],'resumen':lista['resumen']}
                 array.append(variable)
         return array
         
