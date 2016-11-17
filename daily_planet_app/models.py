@@ -30,7 +30,7 @@ class Model:
         
     def upload_comentario(self,id_articulo,id_usuario,comentario):
         nombre = self.db.usuarios.find_one({'_id':{'$eq':id_usuario}})['nombre']
-        _idcomment = int (self.db.articulos.find_one({'_id':{'$eq':id_articulo}})) + 1
+        _idcomment = int (self.db.articulos.find_one({'_id':{'$eq':id_articulo}})['n_comment']) + 1
         self.db.articulos.update({'_id':id_articulo},{ '$inc': { 'n_comment': _idcomment }})
         data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':datetime.datetime.now(),'respuestas':[] }
         self.db.articulos.update({'_id':id_articulo},{'$push':{comentarios:data}})
