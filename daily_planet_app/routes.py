@@ -1,5 +1,4 @@
 from flask import *
-from flask_session import Session
 import datetime
 from models import *
 import json
@@ -23,12 +22,12 @@ def create_routes(app, model, name):
     	#log_in = model.login(email, password)
     	#if not log_in:
     	#    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
-    	session['user'] = 'Holaaa'
+    	session['username'] = 'Holaaa'
     	return render_template('perfil.html' )
     	
     @app.route('/logout')
     def logout():
-    	session.pop('user', None)
+    	session.pop('username', None)
     	return render_template('opexito.html', msg="Log Out Exitoso")
     	
    
