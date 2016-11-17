@@ -6,6 +6,10 @@ jQuery(document).ready(function($) {
     $("#load_more_pub").click(function(){
         load_more_pub();
     });
+    
+    $('#order_by').change(function(){
+        
+    });
 });
 
 

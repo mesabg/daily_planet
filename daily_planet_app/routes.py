@@ -13,13 +13,13 @@ def create_routes(app, model):
     
     @app.route('/login', methods=['POST'])
     def login():
-    	email = request.form['correo']
-    	password  = request.form['password']
+    	#email = request.form['correo']
+    	#password  = request.form['password']
     	#log_in = model.login(email, password)
     	#if not log_in:
     	#    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
     	session['username'] = 'Holaaa'
-    	return render_template('perfil.html' )
+    	return render_template('index.html')
     	
     @app.route('/logout')
     def logout():
