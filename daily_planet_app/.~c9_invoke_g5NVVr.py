@@ -37,11 +37,15 @@ def create_routes(app, model):
     @app.route('/single', methods=['GET'])
     def single():
         _id = int(request.args.get('id'))
-        l = model.getSingle(_id)
+        
         data = None        
         for doc in l:
             data = doc
+        print (data)
+      #  print (list(l['comentarios']))
         return render_template('single.html', item=data)
+        
+   http://127.0.0.1:5000/single?comentario=hola
         
     @app.route('/crear')
     def crear():

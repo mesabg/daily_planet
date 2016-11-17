@@ -41,7 +41,11 @@ def create_routes(app, model):
         data = None        
         for doc in l:
             data = doc
+        print (data)
+      #  print (list(l['comentarios']))
         return render_template('single.html', item=data)
+        
+   http://127.0.0.1:5000/single?comentario=hola
         
     @app.route('/crear')
     def crear():
@@ -110,7 +114,7 @@ def create_routes(app, model):
         return send_file(path, mimetype='image/'+valor)
         
     @app.route('/upload_comentario', methods=['GET','POST'])
-    def upload_comentario():
+        text = request.form['password']
         id_usuario = int(request.args.get('id_usuario'))
         id_articulo = int(request.args.get('id_articulo'))
         text = request.form['comentario_cuerpo']

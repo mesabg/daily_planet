@@ -41,7 +41,11 @@ def create_routes(app, model):
         data = None        
         for doc in l:
             data = doc
+        print (data)
+      #  print (list(l['comentarios']))
         return render_template('single.html', item=data)
+        
+   http://127.0.0.1:5000/single?comentario=hola
         
     @app.route('/crear')
     def crear():
@@ -116,3 +120,5 @@ def create_routes(app, model):
         text = request.form['comentario_cuerpo']
         comentario_nuevo = model.upload_comentario(id_articulo, id_usuario, text)
         return Response(comentario_nuevo, status=200, headers=None, mimetype='application/json')
+
+>>> 

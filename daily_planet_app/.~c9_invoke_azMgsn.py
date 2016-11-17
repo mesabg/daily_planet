@@ -41,7 +41,11 @@ def create_routes(app, model):
         data = None        
         for doc in l:
             data = doc
+        print (data)
+      #  print (list(l['comentarios']))
         return render_template('single.html', item=data)
+        
+   http://127.0.0.1:5000/single?comentario=hola
         
     @app.route('/crear')
     def crear():
@@ -84,7 +88,7 @@ def create_routes(app, model):
         
         
     @app.route('/perfil')
-    def perfil():
+        return render_template('perfil.html', usuario="Nombre")
         return render_template('perfil.html', usuario="Nombre")
         
     @app.route('/get_feed', methods=['GET'])

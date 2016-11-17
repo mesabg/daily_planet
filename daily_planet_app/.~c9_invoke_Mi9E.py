@@ -41,7 +41,11 @@ def create_routes(app, model):
         data = None        
         for doc in l:
             data = doc
+        print (data)
+      #  print (list(l['comentarios']))
         return render_template('single.html', item=data)
+        
+   http://127.0.0.1:5000/single?comentario=hola
         
     @app.route('/crear')
     def crear():
@@ -103,7 +107,7 @@ def create_routes(app, model):
         
     @app.route('/get_image_username', methods=['GET'])
     def get_image_username():
-        name = request.args.get('name')
+        model.get_image_username
         path = 'static/' + model.get_image_username(name)
         spli = path.split(".")
         valor = spli[len(spli)-1] 
