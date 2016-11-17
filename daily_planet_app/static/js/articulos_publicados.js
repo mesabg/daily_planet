@@ -1,5 +1,6 @@
 var n_elems = 6;
 var tipo = "Fecha";
+var booli = true;
 
 jQuery(document).ready(function($) {
     load_more_pub();
@@ -15,6 +16,7 @@ jQuery(document).ready(function($) {
        }else{
           tipo = "Fecha";
        }
+       eliminar();
        load_more_pub();
     });
 });
@@ -45,4 +47,8 @@ function load_more_pub(){
     .always(function() {
         console.log("complete");
     });
+}
+
+function eliminar() {
+    
 }
