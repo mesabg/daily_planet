@@ -20,10 +20,15 @@ jQuery(document).ready(function($) {
        load_more_pub();
     });
     
-    var busqueda_antes = $("search").val();
+    var busqueda_antes = $("#search").val();
+    
+    
+   // $('#search').keyup(function (){
+        
+    //});
     
     setTimeout(function(){ 
-        var busqueda_despues = $("search").val();
+        var busqueda_despues = $("#search").val();
         if ( busqueda_antes==busqueda_despues ) return;
         busqueda_antes = busqueda_despues;
         busqueda = busqueda_despues;
