@@ -16,9 +16,11 @@ class Model:
             save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
         array = list() 
         
+        
         if busqueda != "": 
+            busqueda = busqueda.lower()
             for lista in save:
-                if busqueda not in lista['nombre']:
+                if busqueda not in lista['nombre'].lower():
                     continue
                 else:
                     array.append(lista)
