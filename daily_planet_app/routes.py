@@ -108,7 +108,7 @@ def create_routes(app, model):
     
     @app.route('/modificar_articulo',methods=['GET'])
     def modificar_articulo():
-        obj = {'nombre':request.args.get('nombre'),'_id':int(request.args.get('id')),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
+        obj = {'nombre':request.args.get('nombre'),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
         return render_template('modificar_articulo.html',data=obj)
         
         
