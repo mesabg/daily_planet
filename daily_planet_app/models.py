@@ -18,7 +18,7 @@ class Model:
         
         if busqueda != "": 
             for lista in save:
-                if busqueda not in lista.nombre:
+                if busqueda not in lista['nombre']:
                     continue
                 else:
                     array.append(lista)
