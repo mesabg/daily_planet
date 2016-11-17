@@ -4,7 +4,7 @@
 			<div class="banner-bottom">
 				<!-- container -->
 				<div class="container">
-					<table class="table-striped col-md-12">
+					<table class="table-striped col-md-12" id="table">
 						<tr>
 							<th><center>Nombre del Artículo</center></th>
 							<th><center>Fecha de creación</center></th>
@@ -46,5 +46,10 @@
 				<br> <br>	
 				<!-- //container -->
 			</div>
-			<center> <button class="cargar">Cargar Más</button> </center>
+			<center> <button class="cargar" id="load_more_nopub">Cargar Más</button> </center>
+	{% endblock %}
+	
+		{% block scripts %}
+	
+		<script type="text/javascript" src="{{ url_for('static', filename='js/articulos_no_publicados.js') }}"></script>
 	{% endblock %}

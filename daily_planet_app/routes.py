@@ -17,12 +17,12 @@ def create_routes(app, model):
     
     @app.route('/login', methods=['POST'])
     def login():
-    	#email = request.form['correo']
-    	#password  = request.form['password']
-    	#log_in = model.login(email, password)
-    	#if not log_in:
-    	#    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
-    	session['username'] = request.form['email']
+    	email = request.form['email']
+    	password  = request.form['password']
+    	log_in = model.login(email, password)
+    	if not log_in:
+    	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
+    	session['username'] = log_in['_id'];
     	print(session['username'])
     	return render_template('index.html')
     	
@@ -130,6 +130,15 @@ def create_routes(app, model):
     def perfil():
         return render_template('perfil.html', usuario="Nombre")
         
+        
+    @app.route('/get_no_pub', methods=['GET'])
+    def get_feed_no_pub():
+        n_elem = int(request.args.get('number_elements')) - 6
+        data = json.dumps( model.getSixFeedNoPub(n_elem) )
+        return Response(data, status=200, headers=None, mimetype='application/json')
+         
+         
+         
     @app.route('/get_feed', methods=['GET'])
     def get_feed():
         n_elem = int(request.args.get('number_elements')) - 6

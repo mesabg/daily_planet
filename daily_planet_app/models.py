@@ -32,6 +32,18 @@ class Model:
                     array.append(save[i])
         return array
         
+        
+    def getSixFeedNoPub(self,inicio):
+        save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
+        array = list() 
+        
+        for lista in save:
+            if not lista['publicado']:
+                array.append(lista)
+                
+        return array
+        
+        
     def getSixFeed(self, inicio):
         save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
         array = list() 
