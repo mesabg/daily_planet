@@ -1,4 +1,5 @@
 from flask import *
+from flask.ext.session import Session
 import datetime
 from models import *
 import json
@@ -12,10 +13,34 @@ def create_routes(app, model):
     
     @app.route('/login', methods=['POST'])
     def login():
-    	email = request.form['email']
+    	email = request.form['correo']
     	password  = request.form['password']
-    	return render_template('index.html')
+    	log_in = model.login(email, password)
+    	if not log_in:
+    	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
+    	session['user'] = log_in
+    	return render_template('perfil.html', user=session['user'] )
     	
+    @app.route('/logout')
+    def logout():
+    	session.pop('user', None)
+    	return render_template('opexito.html', msg="Log Out Exitoso")
+    	
+   
+#   @app.route('/login', methods = ['GET', 'POST'])
+#def login():
+#   if request.method == 'POST':
+#      session['username'] = request.form['username']
+#      return redirect(url_for('index'))
+#   return '''
+	
+#@app.route('/logout')
+#def logout():
+   # remove the username from the session if it is there
+   
+ #  return redirect(url_for('index'))
+
+
     	
     @app.route('/registro')
     def registro():
@@ -117,3 +142,5 @@ def create_routes(app, model):
         text = request.form['comentario_cuerpo']
         data = json.dumps(model.upload_comentario(id_articulo, id_usuario, text))
         return Response(data, status=200, headers=None, mimetype='application/json')
+
+

@@ -38,5 +38,9 @@ class Model:
         self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
         return data
         
+    def login(self,correo,password):
+        return self.db.usuarios.find_one({'correo':{'$eq':correo},'password':{'$eq':password}})
+        
+        
         
         
