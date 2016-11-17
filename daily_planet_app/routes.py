@@ -109,7 +109,7 @@ def create_routes(app, model):
         valor = spli[len(spli)-1] 
         return send_file(path, mimetype='image/'+valor)
         
-    @app.route('/upload_comentario', methods=['GET'])
+    @app.route('/upload_comentario', methods=['GET', 'POST'])
     def upload_comentario():
         id_usuario = int(request.args.get('id_usuario'))
         id_articulo = int(request.args.get('id_articulo'))
