@@ -1,7 +1,6 @@
 var n_elems = 6;
 var tipo = "Fecha";
 var busqueda = "";
-
 jQuery(document).ready(function($) {
     load_more_pub();
     $("#load_more_pub").click(function(){
@@ -20,23 +19,16 @@ jQuery(document).ready(function($) {
        load_more_pub();
     });
     
-    var busqueda_antes = $("#search").val();
     
-    
-   // $('#search').keyup(function (){
-        
-    //});
-    
-    setTimeout(function(){ 
+    $('#search').keyup(function (){
         var busqueda_despues = $("#search").val();
-        if ( busqueda_antes==busqueda_despues ) return;
-        busqueda_antes = busqueda_despues;
         busqueda = busqueda_despues;
         n_elems = 6;
         eliminar();
         load_more_pub();
         console.log("CUALQUIER VERGA");
-    }, 1000);
+    });
+  
     
 });
 
