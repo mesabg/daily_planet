@@ -1,5 +1,5 @@
 from flask import *
-from flask.ext.session import Session
+from flask_session import Session
 import datetime
 from models import *
 import json
