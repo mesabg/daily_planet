@@ -23,8 +23,8 @@ function comment(){
         
         $("#fondo").prepend(div);
     })
-    .fail(function() {
-        console.log("error");
+    .fail(function(error) {
+        console.log("error", error);
     })
     .always(function() {
         console.log("complete");
