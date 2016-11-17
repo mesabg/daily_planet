@@ -112,7 +112,7 @@ def create_routes(app, model):
     @app.route('/upload_comentario', methods=['GET', 'POST'])
     def upload_comentario():
         id_usuario = int(request.args.get('id_usuario'))
-        id_articulo = int(request.args.get('id_articulo'))
+        id_articulo = int(float(request.args.get('id_articulo')))
         text = request.args.get('comentario_cuerpo')
         #text = request.form['comentario_cuerpo']
         comentario_nuevo = model.upload_comentario(id_articulo, id_usuario, text)
