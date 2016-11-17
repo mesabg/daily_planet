@@ -21,8 +21,8 @@ def create_routes(app, model, name):
     	email = request.form['correo']
     	password  = request.form['password']
     	log_in = model.login(email, password)
-    	if not log_in:
-    	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
+    	#if not log_in:
+    	#    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
     	session['user'] = 'Holaaa'
     	return render_template('perfil.html', user=session['user'] )
     	
@@ -54,12 +54,13 @@ def create_routes(app, model, name):
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
-        nombre = request.form['nombre']
-        email = request.form['email']
         password = request.form['password']
         repeat = request.form['password_r']
         if password != repeat:
             return render_template('opexito.html', msg="Registro fallido, contraseñas no coinciden")
+            
+        nombre = request.form['nombre']
+        email = request.form['email']
         tipo = request.form['tipo']
         respuestadb = model.registro(nombre,email,password,tipo)
         if respuestadb:
