@@ -3,16 +3,17 @@ from bson.son import SON
 import datetime
 
 # MongoDB Connection with PyMongo
+# 
 class Model:
     def __init__(self):
         self.client = MongoClient()
         self.db = self.client.daily_planet_db
         
-    def getSixFeedPub(self,inicio,tipo):
+    def getSixFeedPub(self,inicio,tipo,busqueda):
         if tipo == "Fecha":
-            save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
+            save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }},{ 'nombre': { '$regex': busqueda } }]))
         else:
-            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
+            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }},{ 'nombre': { '$regex': busqueda } }]))
         array = list() 
         
         for i in range(inicio, inicio+6):

@@ -1,6 +1,6 @@
 var n_elems = 6;
 var tipo = "Fecha";
-var booli = true;
+var busqueda = "";
 
 jQuery(document).ready(function($) {
     load_more_pub();
@@ -19,6 +19,18 @@ jQuery(document).ready(function($) {
        eliminar();
        load_more_pub();
     });
+    
+    var busqueda_antes = $("search").val();
+    
+    setTimeout(function(){ 
+        var busqueda_despues = $("search").val();
+        if ( busqueda_antes==busqueda_despues ) return;
+        busqueda = busqueda_despues;
+        n_elems = 6;
+        eliminar();
+        load_more_pub();
+    }, 1000);
+    
 });
 
 
@@ -27,7 +39,7 @@ function load_more_pub(){
         url: '/get_feed_pub',
         type: 'GET',
         dataType: 'json',
-        data: {number_elements: n_elems,type: tipo},
+        data: {number_elements: n_elems,type: tipo, search: busqueda },
     })
     .done(function(data) {
         /*Render*/

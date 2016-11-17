@@ -140,7 +140,8 @@ def create_routes(app, model):
     def get_feed_pub():
         n_elem = int(request.args.get('number_elements')) - 6
         tipo = (request.args.get('type'))
-        data = json.dumps( model.getSixFeedPub(n_elem,tipo) )
+        busqueda = (request.args.get('search'))
+        data = json.dumps( model.getSixFeedPub(n_elem,tipo,busqueda) )
         return Response(data, status=200, headers=None, mimetype='application/json')
     
     @app.route('/get_image', methods=['GET'])
