@@ -117,7 +117,7 @@ def create_routes(app, model):
         return render_template('opexito.html')
         
         
-    @app.rout('/publicar', methods=['GET'])
+    @app.route('/publicar', methods=['GET'])
     def publicar():
         _id = int(request.args.get('id'))
         editor = int(request.args.get('editor'))
