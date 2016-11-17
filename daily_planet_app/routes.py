@@ -59,10 +59,13 @@ def create_routes(app, model, name):
         password = request.form['password']
         tipo = request.form['tipo']
         respuestadb = model.registro(nombre,email,password,tipo)
-        
+        if respuestadb:
+            return render_template('opexito.html')
+        else:
+            return render_template('opexito.html', msg="Registro fallido, nombre o email ya existen")
         # Salvar data
         # Generar Mensage
-        return render_template('opexito.html')
+        
     
     
     @app.route('/recuperar_contrasena', methods=['POST'])
