@@ -106,9 +106,10 @@ def create_routes(app, model):
         return render_template('articulos_no_publicados.html')
     
     
-    @app.route('/modificar_articulo')
+    @app.route('/modificar_articulo',methods=['GET'])
     def modificar_articulo():
-        return render_template('modificar_articulo.html')
+        obj = {'nombre':request.args.get('nombre'),'_id':int(request.args.get('id')),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
+        return render_template('modificar_articulo.html',data=obj)
         
         
     @app.route('/modificar_articulo_save', methods=['POST'])

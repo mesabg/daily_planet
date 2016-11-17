@@ -10,7 +10,7 @@
 						<div class="left-blog left-single">
 							<div class="blog-left">
 								<div class="single-left-left">
-									<h3>Crear Artículo</h3>
+									<h3>Modificar Artículo</h3>
 									<hr>
 								</div>
 								<div class="single-left-left">
@@ -20,19 +20,17 @@
 								<center><div class="col-md-6 blog-top-left-grid">
 									<div class="form-inline">
 										<label for="title" style="width: 150px">Título: </label>
-										<input type="text" class="form-control" id="title" style="width: 250px" value="Una Mirada al mar">
+										<input type="text" class="form-control" id="title" style="width: 250px" value="{{data.nombre}}"/>
 									</div>
 									<br>
 									<div class="form-inline">
 										<label for="comment" style="width: 150px">Breve Resumen: </label>
-										<textarea class="form-control" rows="5" id="comment"  style="width: 250px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin
-										dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus
-										fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</textarea>
+										<textarea class="form-control" rows="5" id="comment"  style="width: 250px"> {{data.resumen}}</textarea>
 									</div>
 									<br>
 									<div class="form-inline">
 										<label for="keywords" style="width: 150px">Palabras claves: </label>
-										<input type="text" class="form-control" id="keywords" style="width: 250px" value="Estas son las palabras claves">
+										<input type="text" class="form-control" id="keywords" style="width: 250px" value="{{data.palabras}}">
 									</div>
 									<br>
 								</div>	</center>
@@ -45,7 +43,7 @@
 									</div>
 									<br>
 									<div class="form-inline">
-										<center><img src="images/icon1.png" ></center>
+										<center><img src="/get_image?path={{data.imagen}}" ></center>
 									</div>
 									<br>
 								</div></center>
@@ -55,11 +53,7 @@
 					<div class="single-left-left">
 						<h3>Cuerpo del artículo</h3>
 					</div>
-					<center>  <textarea class="form-control" rows="5" id="comment"  style="width: 100%">orem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin
-					dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus
-					fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .orem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin
-					dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus
-					fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</textarea> </center>
+					<center>  <textarea class="form-control" rows="5" id="comment"  style="width: 100%">{{data.cuerpo}}</textarea> </center>
 					<br>
 					<center><button type="submit" class="btn btn-success" onclick="modify()">Modificar</button> </center>
 				</form>

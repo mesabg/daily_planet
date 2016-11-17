@@ -34,12 +34,12 @@ class Model:
         
         
     def getSixFeedNoPub(self,inicio):
-        save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1, 'publicado':1,'editando':1,'fecha':1 }}]))
+        save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1, 'publicado':1,'editando':1,'fecha':1,'cuerpo':1,'palabras':1 }}]))
         array = list() 
         
         for lista in save:
             if not lista['publicado']:
-                variable = {'nombre':lista['nombre'],'fecha':str(lista['fecha']),'editando':lista['editando'],'publicado':lista['publicado'],'_id':lista['_id']}
+                variable = {'nombre':lista['nombre'],'fecha':str(lista['fecha']),'editando':lista['editando'],'publicado':lista['publicado'],'_id':lista['_id'],'imagen':lista['imagen'],'cuerpo':lista['cuerpo'],'palabras':lista['palabras']}
                 array.append(variable)
         return array
         
