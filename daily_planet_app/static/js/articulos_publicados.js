@@ -50,7 +50,7 @@ function load_more_pub(){
 }
 
 function eliminar() {
-    $("#feed").each(function(index){
-        $(this).remove();
+    $.each($("#feed").children(),function(index, elem){
+        $(elem).remove();
     });
 }
