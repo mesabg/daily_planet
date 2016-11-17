@@ -1,5 +1,5 @@
 var n_elems = 6;
-
+var tipo = "Fecha";
 
 jQuery(document).ready(function($) {
     load_more_pub();
@@ -8,17 +8,24 @@ jQuery(document).ready(function($) {
     });
     
     $('#order_by').change(function(){
-        
+        n_elems = 6;
+       if( $('#order_by').val()=="Autor" ){
+          tipo = "Autor";
+          
+       }else{
+          tipo = "Fecha";
+       }
+       load_more_pub();
     });
 });
 
 
 function load_more_pub(){
     $.ajax({
-        url: '/get_feed',
+        url: '/get_feed_pub',
         type: 'GET',
         dataType: 'json',
-        data: {number_elements: n_elems},
+        data: {number_elements: n_elems,type: tipo},
     })
     .done(function(data) {
         /*Render*/

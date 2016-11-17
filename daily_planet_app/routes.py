@@ -130,6 +130,13 @@ def create_routes(app, model):
         n_elem = int(request.args.get('number_elements')) - 6
         data = json.dumps( model.getSixFeed(n_elem) )
         return Response(data, status=200, headers=None, mimetype='application/json')
+        
+    @app.route('/get_feed_pub', methods=['GET'])
+    def get_feed_pub():
+        n_elem = int(request.args.get('number_elements')) - 6
+        tipo = (request.args.get('type'))
+        data = json.dumps( model.getSixFeedPub(n_elem,tipo) )
+        return Response(data, status=200, headers=None, mimetype='application/json')
     
     @app.route('/get_image', methods=['GET'])
     def get_image():
