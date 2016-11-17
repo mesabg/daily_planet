@@ -46,7 +46,7 @@ class Model:
         repuesta2 = self.db.usuarios.find_one({'nombre':{'$eq':nombre}})
         
         if not respuesta and not respuesta2:
-            #self.db.usuarios.update
+            #self.db.usuarios.insert_one
             return True
         else:
             return False

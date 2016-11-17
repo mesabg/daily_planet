@@ -9,7 +9,7 @@ app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 model = Model();
 
 #Create Routes
-create_routes(app, model)
+create_routes(app, model, __name__)
 
 if __name__ == '__main__':
 	app.debug = True

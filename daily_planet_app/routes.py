@@ -4,8 +4,13 @@ import datetime
 from models import *
 import json
 
+SESSION_TYPE = 'redis'
 
-def create_routes(app, model):
+def create_routes(app, model, name):
+    #Session
+    app.config.from_object(name)
+    Session(app)
+    
     #Routes Definition
     @app.route('/')
     def index():
@@ -49,6 +54,12 @@ def create_routes(app, model):
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
+        nombre = request.form['nombre']
+        email = request.form['email']
+        password = request.form['password']
+        tipo = request.form['tipo']
+        respuestadb = model.registro(nombre,email,password,tipo)
+        
         # Salvar data
         # Generar Mensage
         return render_template('opexito.html')
