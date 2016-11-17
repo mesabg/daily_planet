@@ -116,4 +116,5 @@ def create_routes(app, model):
         text = request.args.get('comentario_cuerpo')
         #text = request.form['comentario_cuerpo']
         comentario_nuevo = model.upload_comentario(id_articulo, id_usuario, text)
+        print(id_usuario, id_articulo, text)
         return Response(comentario_nuevo, status=200, headers=None, mimetype='application/json')
