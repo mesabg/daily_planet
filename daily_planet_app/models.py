@@ -43,7 +43,7 @@ class Model:
         
     def registro(self,nombre,email,password,tipo):
         respuesta = self.db.usuarios.find_one({'correo':{'$eq':email}})
-        repuesta2 = self.db.usuarios.find_one({'nombre':{'$eq':nombre}})
+        respuesta2 = self.db.usuarios.find_one({'nombre':{'$eq':nombre}})
         
         if not respuesta and not respuesta2:
             self.db.usuarios.insert_one({'correo':email,'password':password, 'tipo': tipo, 'nombre': nombre, 'avatar': "local_images/user/1.png", 'descripcion': "vacio"})
