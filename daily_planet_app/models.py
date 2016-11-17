@@ -19,7 +19,7 @@ class Model:
         return array
         
     def getSingle(self, _id_):
-        return self.db.articulos.aggregate([ {'$match': {'_id': {'$eq':_id_}}} ,{ '$project':{'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1  }}, { '$unwind': '$autor' } ])
+        return self.db.articulos.aggregate([ {'$match': {'_id': {'$eq':_id_}}} ,{ '$project':{'_id':1, 'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'_id':1, 'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1  }}, { '$unwind': '$autor' } ])
         #return self.db.articulos.find_one({'_id':{'$eq':_id_}})
         #db.articulos.aggregate([ {'$match': {'_id': {'$eq':1}}} ,{ '$project':{'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1  }} ])
         
@@ -27,3 +27,11 @@ class Model:
     def get_image_username(self,name):
         data = self.db.usuarios.find_one({'nombre':{'$eq':name}},{'_id':0,'avatar':1})
         return data['avatar']
+        
+    def upload_comentario(self,id_articulo,id_usuario,comentario):
+        nombre = self.db.usuarios.find_one({'_id':{'$eq':id_usuario}})['nombre']
+        _idcomment = int (self.db.articulos.find_one({'_id':{'$eq':id_articulo}})) + 1
+        self.db.articulos.update({'_id':id_articulo},{ '$inc': { 'n_comment': _idcomment }})
+        data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':datetime.datetime.now(),'respuestas':[] }
+        self.db.articulos.update({'_id':id_articulo},{'$push':{comentarios:data}})
+        return data

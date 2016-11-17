@@ -1,46 +1,37 @@
+jQuery(document).ready(function($) {
+    $("#upload_comentario").click(function(){
+        comment();
+    });
+});
 
 
+function comment(){
+    if ( $("#comentario").val()=="" ) return;
+    var id_articulo = $("#upload_comentario").attr('id_articulo');
+    var id_usuario = $("#upload_comentario").attr('id_usuario');
+    $.ajax({
+        url: '/upload_comentario?id_articulo='+id_articulo+'&id_usuario='+id_usuario,
+        type: 'POST',
+        dataType: 'json',
+        data: {comentario_cuerpo: $("#comentario").val()},
+    })
+    .done(function(comentario_nuevo) {
+        /*Render*/
+        
+        var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+comentario_nuevo.nombre+'" alt=""> <h5>' + comentario_nuevo.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+comentario_nuevo.cuerpo+'</p>   <ul> <li>' + comentario_nuevo.fecha + '</li> </ul> </div>  </div>'   )
+        
+        $("#fondo").prepend(div);
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+}
 
-{% extends "layout.html" %}
-
-	{% block content %}
-	
-		<center><div style="background-color:black; padding-top: 10px">
-		<div class="footer-logo">
-						<a href="index.html">Compartir</a>
-								<div class="footer-left">
-									<ul>
-										<li><a class="facebook" href="#"></a></li>
-										<li><a class="twitter" href="#"></a></li>
-										<li><a class="linked-in" href="#"></a></li>
-										<li><a class="you-tube" href="#"></a></li>
-									</ul>
-								</div>
-							</div>
-		</div></center>
-		<div class="blog">
-			<!-- container -->
-			<div class="container">
-				<div class="col-md-9 blog-top-left-grid">
-					<div class="left-blog left-single">
-						<div class="blog-left">
-							<div class="single-left-left">
-								<p>Autor <a href="#">{{item.autor}}</a> &nbsp;&nbsp;{{item.fecha}} &nbsp;&nbsp; <a href="#">Comentarios ({{ item.comentarios|length }})</a></p>
-								<h3>{{item.nombre}}</h3>
-								<img src="/get_image?path={{item.imagen}}" alt="" />
-							</div>
-							<div class="blog-left-bottom">
-								<P> {{item.cuerpo}}
-								</P>
-							</div>
-						</div>
-						
-						
-							
-							
-						
-					
-						<div class="response">
+/*
+            <div class="response">
 							<h3>Comentarios</h3>
 							{% for comentario in item.comentarios recursive %}
 							        {% if comentario.respuestas %}
@@ -69,7 +60,7 @@
 							        {% else %}
 							        	<div class="media response-info">
 							               <div class="media-left response-text-left">
-							                	<img class="media-object" src="/get_image_username?name={{comentario.nombre}}" alt=""> <!-- Aqui cambiar la ruta -->
+							                	<img class="media-object" src="/get_image_username?name={{comentario.nombre}}" alt="">
 							                	<h5>{{comentario.nombre}}</h5>
 							                </div>
 							                
@@ -85,7 +76,8 @@
 							        {% endif %}
 							{% endfor %}
 						</br>
-							<div class="opinion" id="fondo">
+						
+							<div class="opinion">
 								<h3>Deja tu comentario</h3>
 								<form>
 									<textarea placeholder="Mensaje" name="comentario" id="comentario" required=""></textarea>
@@ -93,30 +85,4 @@
 								</form>
 							</div>
 					</div>
-				</div>
-				</div>
-				
-				
-				
-				<div class="col-md-3 blog-top-right-grid">
-					<div class="Categories">
-						<h3>Categorías</h3>
-						<ul>
-							<li><a href="#">{{item.categoria}}</a></li>
-						</ul>
-					</div>
-					
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<!-- //container -->
-		</div>
-		<!-- //blog -->
-		
-		{% endblock %}
-
-		{% block scripts %}
-	
-		<script type="text/javascript" src="{{ url_for('static', filename='js/single.js') }}"></script>
-		
-		{% endblock %}
+*/
