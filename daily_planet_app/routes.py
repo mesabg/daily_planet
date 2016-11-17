@@ -23,6 +23,7 @@ def create_routes(app, model):
     	#if not log_in:
     	#    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
     	session['username'] = request.form['email']
+    	print(session['username'])
     	return render_template('index.html')
     	
     @app.route('/logout')
