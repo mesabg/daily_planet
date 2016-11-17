@@ -110,9 +110,9 @@ def create_routes(app, model):
     def modificar_articulo():
         print("------------------------------------------")
         print(request.args.get('id'))
-        #obj = {'nombre':request.args.get('nombre'),'_id':request.args.get('id'),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
+        obj = {'nombre':request.args.get('nombre'),'_id':request.args.get('id'),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
         
-        #print(obj)
+        print(obj)
         return render_template('modificar_articulo.html', data=obj)
         
         
