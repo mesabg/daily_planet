@@ -3,7 +3,7 @@ from bson.son import SON
 import datetime
 
 # MongoDB Connection with PyMongo
-# 
+# https://docs.mongodb.com/manual/reference/operator/query/regex/
 class Model:
     def __init__(self):
         self.client = MongoClient()
@@ -11,16 +11,23 @@ class Model:
         
     def getSixFeedPub(self,inicio,tipo,busqueda):
         if tipo == "Fecha":
-            save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }},{ 'nombre': { '$regex': busqueda } }]))
+            save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
         else:
-            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }},{ 'nombre': { '$regex': busqueda } }]))
+            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
         array = list() 
         
-        for i in range(inicio, inicio+6):
-            if len(save) == i:
-                break
-            else:
-                array.append(save[i])
+        if busqueda != "": 
+            for lista in save:
+                if busqueda not in lista.nombre:
+                    continue
+                else:
+                    array.append(lista)
+        else:
+            for i in range(inicio, inicio+6):
+                if len(save) == i:
+                    break
+                else:
+                    array.append(save[i])
         return array
         
     def getSixFeed(self, inicio):
