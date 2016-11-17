@@ -16,10 +16,10 @@ function comment(){
         type: 'POST',
         data: { comentario_cuerpo: $("#comentario").val() }
     })
-    .done(function(comentario_nuevo) {
+    .done(function(data) {
         /*Render*/
         
-        var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+comentario_nuevo.nombre+'" alt=""> <h5>' + comentario_nuevo.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+comentario_nuevo.cuerpo+'</p>   <ul> <li>' + comentario_nuevo.fecha + '</li> </ul> </div>  </div>'   )
+        var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+data.nombre+'" alt=""> <h5>' + data.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+data.cuerpo+'</p>   <ul> <li>' + data.fecha + '</li> </ul> </div>  </div>'   )
         
         $("#fondo").prepend(div);
     })
