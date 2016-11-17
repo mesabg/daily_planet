@@ -57,6 +57,9 @@ def create_routes(app, model, name):
         nombre = request.form['nombre']
         email = request.form['email']
         password = request.form['password']
+        repeat = request.form['password_r']
+        if password != repeat:
+            return render_template('opexito.html', msg="Registro fallido, contraseñas no coinciden")
         tipo = request.form['tipo']
         respuestadb = model.registro(nombre,email,password,tipo)
         if respuestadb:
