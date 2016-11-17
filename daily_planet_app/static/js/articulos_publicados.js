@@ -10,8 +10,8 @@ jQuery(document).ready(function($) {
     
     $('#order_by').change(function(){
         n_elems = 6;
-       if( $('#order_by').val()=="Autor" ){
-          tipo = "Autor";
+       if( $('#order_by').val()=="Nombre" ){
+          tipo = "Nombre";
           
        }else{
           tipo = "Fecha";

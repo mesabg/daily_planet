@@ -12,7 +12,7 @@ class Model:
         if tipo == "Fecha":
             save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
         else:
-            save = list(self.db.articulos.aggregate([{ '$sort': {'autor':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
+            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
         array = list() 
         
         for i in range(inicio, inicio+6):
