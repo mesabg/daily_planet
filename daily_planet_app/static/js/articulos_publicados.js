@@ -25,6 +25,7 @@ jQuery(document).ready(function($) {
     setTimeout(function(){ 
         var busqueda_despues = $("search").val();
         if ( busqueda_antes==busqueda_despues ) return;
+        busqueda_antes = busqueda_despues;
         busqueda = busqueda_despues;
         n_elems = 6;
         eliminar();
