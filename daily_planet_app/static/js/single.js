@@ -7,8 +7,8 @@ jQuery(document).ready(function($) {
 
 function comment(){
     if ( $("#comentario").val()=="" ) return;
-    var id_articulo = $("#upload_comentario").attr('id_articulo');
-    var id_usuario = $("#upload_comentario").attr('id_usuario');
+    var id_articulo = parseInt($("#upload_comentario").attr('id_articulo'));
+    var id_usuario = parseInt($("#upload_comentario").attr('id_usuario'));
     console.log( id_articulo, id_usuario, $("#comentario").val() );
     $.ajax({
         url: '/upload_comentario?id_articulo='+id_articulo+'&id_usuario='+id_usuario+'&comentario_cuerpo='+$("#comentario").val()
