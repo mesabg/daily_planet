@@ -12,7 +12,7 @@ function comment(){
     console.log( id_articulo, id_usuario, $("#comentario").val() );
     $.ajax({
         url: '/upload_comentario?id_articulo='+id_articulo+'&id_usuario='+id_usuario,
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
         data: {comentario_cuerpo: $("#comentario").val()},
     })
