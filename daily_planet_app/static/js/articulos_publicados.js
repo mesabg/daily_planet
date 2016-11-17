@@ -26,7 +26,6 @@ jQuery(document).ready(function($) {
         n_elems = 6;
         eliminar();
         load_more_pub();
-        console.log("CUALQUIER VERGA");
     });
   
     
