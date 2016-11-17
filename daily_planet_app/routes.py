@@ -108,11 +108,7 @@ def create_routes(app, model):
     
     @app.route('/modificar_articulo', methods=['GET'])
     def modificar_articulo():
-        print("------------------------------------------")
-        print(request.args.get('id'))
-        obj = {'nombre':request.args.get('nombre'),'_id':request.args.get('id'),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
-        
-        print(obj)
+        obj = {'nombre':request.args.get('nombre'),'_id':int(request.args.get('id')),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
         return render_template('modificar_articulo.html', data=obj)
         
         
@@ -120,6 +116,14 @@ def create_routes(app, model):
     def modificar_articulo_save():
         return render_template('opexito.html')
         
+        
+    @app.rout('/publicar', methods=['GET'])
+    def publicar():
+        _id = int(request.args.get('id'))
+        editor = int(request.args.get('editor'))
+        model.publicar(_id,editor)
+        return render_template('opexito.html',msg="Publicación exitosa")
+       
         
     @app.route('/modificar_perfil')
     def modificar_perfil():

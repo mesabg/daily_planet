@@ -11,9 +11,9 @@ class Model:
         
     def getSixFeedPub(self,inicio,tipo,busqueda):
         if tipo == "Fecha":
-            save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
+            save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1,'publicado':1 }}]))
         else:
-            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
+            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1,'publicado':1 }}]))
         array = list() 
         
         
@@ -23,13 +23,15 @@ class Model:
                 if busqueda not in lista['nombre'].lower():
                     continue
                 else:
-                    array.append(lista)
+                    if lista['publicado']:
+                        array.append(lista)
         else:
             for i in range(inicio, inicio+6):
                 if len(save) == i:
                     break
                 else:
-                    array.append(save[i])
+                    if lista['publicado']:
+                        array.append(save[i])
         return array
         
         
@@ -45,14 +47,15 @@ class Model:
         
         
     def getSixFeed(self, inicio):
-        save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1 }}]))
+        save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1,'publicado':1 }}]))
         array = list() 
         
         for i in range(inicio, inicio+6):
             if len(save) == i:
                 break
             else:
-                array.append(save[i])
+                if save[i]['publicado']:
+                    array.append(save[i])
         return array
         
     def getSingle(self, _id_):
@@ -60,7 +63,7 @@ class Model:
         #return self.db.articulos.find_one({'_id':{'$eq':_id_}})
         #db.articulos.aggregate([ {'$match': {'_id': {'$eq':1}}} ,{ '$project':{'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1  }} ])
         
-        
+    
     def get_image_username(self,name):
         data = self.db.usuarios.find_one({'nombre':{'$eq':name}},{'_id':0,'avatar':1})
         return data['avatar']
@@ -87,5 +90,7 @@ class Model:
         else:
             return False
         
-        
+    def publicar(self,_id,editor):
+        self.db.articulos.update({'_id':_id},{'$set':{'editor':editor,'publicado':True}})
+        return True
         

@@ -20,17 +20,17 @@
 								<center><div class="col-md-6 blog-top-left-grid">
 									<div class="form-inline">
 										<label for="title" style="width: 150px">Título: </label>
-										<input type="text" class="form-control" id="title" style="width: 250px" value="{{data.nombre}}"/>
+										<input type="text" class="form-control" name="nombre" id="title" style="width: 250px" value="{{data.nombre}}" required/>
 									</div>
 									<br>
 									<div class="form-inline">
 										<label for="comment" style="width: 150px">Breve Resumen: </label>
-										<textarea class="form-control" rows="5" id="comment"  style="width: 250px"> {{data.resumen}}</textarea>
+										<textarea class="form-control" rows="5" id="comment" name="resumen" style="width: 250px" required> {{data.resumen}}</textarea>
 									</div>
 									<br>
 									<div class="form-inline">
 										<label for="keywords" style="width: 150px">Palabras claves: </label>
-										<input type="text" class="form-control" id="keywords" style="width: 250px" value="{{data.palabras}}">
+										<input type="text" class="form-control" id="keywords" name="palbras" style="width: 250px" value="{{data.palabras}}" required>
 									</div>
 									<br>
 								</div>	</center>
@@ -39,7 +39,7 @@
 									<br>
 									<div class="form-inline">
 										<label for="image" style="width: 150px">Imagen: </label>
-										<input type="file" class="btn btn-primary" style="width: 250px" id="image">Examinar
+										<input type="file" class="btn btn-primary" style="width: 350px" id="image">
 									</div>
 									<br>
 									<div class="form-inline">
@@ -53,9 +53,9 @@
 					<div class="single-left-left">
 						<h3>Cuerpo del artículo</h3>
 					</div>
-					<center>  <textarea class="form-control" rows="5" id="comment"  style="width: 100%">{{data.cuerpo}}</textarea> </center>
+					<center>  <textarea class="form-control" rows="5" id="comment" name="cuerpo" style="width: 100%" required>{{data.cuerpo}}</textarea> </center>
 					<br>
-					<center><button type="submit" class="btn btn-success" onclick="modify()">Modificar</button> </center>
+					<center><button type="submit" class="btn btn-success" >Modificar</button> </center>
 				</form>
 				<div class="clearfix"> </div>
 			</div>
