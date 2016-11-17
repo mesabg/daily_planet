@@ -23,7 +23,7 @@ def create_routes(app, model, name):
     	log_in = model.login(email, password)
     	if not log_in:
     	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
-    	session['user'] = log_in
+    	session['user'] = 'Holaaa'
     	return render_template('perfil.html', user=session['user'] )
     	
     @app.route('/logout')
@@ -60,7 +60,7 @@ def create_routes(app, model, name):
         tipo = request.form['tipo']
         respuestadb = model.registro(nombre,email,password,tipo)
         if respuestadb:
-            return render_template('opexito.html')
+            return render_template('opexito.html', msg="Registro exitoso!")
         else:
             return render_template('opexito.html', msg="Registro fallido, nombre o email ya existen")
         # Salvar data
