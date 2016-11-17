@@ -6,6 +6,10 @@ import json
 
 
 def create_routes(app, model):
+    app.config['SESSION_TYPE'] = 'memcached'
+    app.config['SECRET_KEY'] = 'super secret key'
+    session = Session()
+    
     #Routes Definition
     @app.route('/')
     def index():
