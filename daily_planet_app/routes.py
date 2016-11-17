@@ -3,13 +3,9 @@ import datetime
 from models import *
 import json
 
-SESSION_TYPE = 'redis'
 
-def create_routes(app, model, name):
-    #Session
-    app.config.from_object(name)
-    Session(app)
-    
+
+def create_routes(app, model):
     #Routes Definition
     @app.route('/')
     def index():
