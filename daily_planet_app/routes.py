@@ -109,7 +109,7 @@ def create_routes(app, model):
     @app.route('/modificar_articulo', methods=['GET'])
     def modificar_articulo():
         print("------------------------------------------")
-        print(request.args.get('nombre'))
+        print(request.args.get('id'))
         obj = {'nombre':request.args.get('nombre'),'_id':request.args.get('id'),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
         
         print(obj)
