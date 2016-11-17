@@ -2,14 +2,14 @@ var n_elems = 6;
 
 
 jQuery(document).ready(function($) {
-    load_more();
-    $("#load_more").click(function(){
-        load_more();
+    load_more_pub();
+    $("#load_more_pub").click(function(){
+        load_more_pub();
     });
 });
 
 
-function load_more(){
+function load_more_pub(){
     $.ajax({
         url: '/get_feed',
         type: 'GET',
@@ -23,7 +23,7 @@ function load_more(){
             $("#feed").append(div);
         }
         if(data.length < 6){
-            var boton = document.getElementById("load_more");
+            var boton = document.getElementById("load_more_pub");
             boton.style.display ='none';
         }
         n_elems += 6;
@@ -35,20 +35,3 @@ function load_more(){
         console.log("complete");
     });
 }
-
-
-
-
-/*
-
-						<div class="col-md-4 banner-bottom-grid">
-							<a href="single.html"><img src="{{ url_for('static', filename='images/c3.jpg') }}" alt="" /></a>
-							<h4>Ejemplo Noticia 1</h4>
-							<p>Lorem Ipsum is simply dummy text
-								of the printing and typesetting industry.
-								Lorem Ipsum has been the industry's
-								dummy text ever since the 1500s,
-								including versions of Lorem Ipsum.
-							</p>
-						</div>
-					*/

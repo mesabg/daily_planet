@@ -21,52 +21,21 @@
 				</div>
 				<br>	<br>	
 				<div class="container">
-					<table class="table-striped col-md-12">
-						<tr>
-							<th><center>Nombre del Artículo</center></th>
-							<th><center>Fecha de publicación</center></th>
-							<th><center>Autor</center></th>
-							<th><center>Acciones</center></th>
-						</tr>
-						<tr>
-							<td>Artículo Interesante</td>
-							<td>10/10/2016</td>
-							<td><center>Alberto</center></td>
-							<td><a href="/single" class="btn btn-default col-md-12">Ver</a></td>
-						</tr>
-						<tr>
-							<td>Artículo más o menos interesante</td>
-							<td>09/10/2016</td>
-							<td><center>Francisco</center></td>
-							<td><a href="/single" class="btn btn-default col-md-12">Ver</a></td>
-						</tr>
-						<tr>
-							<td>Artículo no tan interesante</td>
-							<td>14/09/2016</td>
-							<td><center>Moisés</center></td>
-							<td><a href="/single" class="btn btn-default col-md-12">Ver</a></td>
-						</tr>
-						<tr>
-							<td>Artículo breve</td>
-							<td>09/10/2016</td>
-							<td><center>Eduardo</center></td>
-							<td><a href="/single" class="btn btn-default col-md-12">Ver</a></td>
-						</tr>
-						<tr>
-							<td>Artículo extenso</td>
-							<td>05/11/2016</td>
-							<td><center>Ricardo</center></td>
-							<td><a href="/single" class="btn btn-default col-md-12">Ver</a></td>
-						</tr>
-					</table>
+					
+					<div id="feed" name="feed" class="banner-bottom-grids">
+						<!--<div class="clearfix"> </div>-->
+					</div>
+					
 				</div>
 				<br> <br>	
-				
 				<!-- //container -->
 			</div>
-
-			<center> <button class="cargar">Cargar Más</button> </center>
-			
+			<center> <button id="load_more_pub" class="cargar">Cargar Más</button> </center>
 			{% endblock %}
+			
+	{% block scripts %}
+	
+		<script type="text/javascript" src="{{ url_for('static', filename='js/articulos_publicados.js') }}"></script>
+	{% endblock %}
 
 			
