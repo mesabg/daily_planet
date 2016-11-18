@@ -7,6 +7,11 @@ jQuery(document).ready(function($) {
     	$(this).parent().siblings('.responder').slideToggle("slow");
     });
     
+    $(".upload_comentario_recursive").click(function(){
+        comment_recursive($(this).parent().parent(), $(this));
+    });
+    
+    
     $(".responder").hide(); 
     
 });
@@ -36,6 +41,40 @@ function comment(){
     .always(function() {
         console.log("complete");
     });
+}
+
+
+function comment_recursive(padre,yo){
+	if (yo.val()=="") return;
+	var id_articulo = parseInt(yo.attr('id_articulo'));
+    var id_usuario = parseInt(yo.attr('id_usuario'));
+    var id_padre = parseInt(yo.attr('id_padre'));
+    
+    $.ajax({
+        url: '/upload_comentario_recursive?id_articulo='+id_articulo+'&id_usuario='+id_usuario+'&id_padre='+id_padre,
+        dataType: 'json',
+        type: 'POST',
+        data: { comentario_cuerpo: yo.siblings(".comentario_recursive").val() }
+    })
+    .done(function(data) {
+        /*Render*/
+        
+        var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+data.nombre+'" alt=""> <h5>' + data.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+data.cuerpo+'</p>   <ul> <li>' + data.fecha + '</li> <li> <a href="#">Responder</a> </li> </ul> </div>  </div>'   )
+        
+        padre.prepend(div);
+        
+        yo.siblings(".comentario_recursive").val("");
+
+    })
+    .fail(function(error) {
+        console.log("error", error);
+    })
+    .always(function() {
+        console.log("complete");
+    });
+    
+    
+	
 }
 
 /*

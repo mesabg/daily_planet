@@ -33,11 +33,6 @@
 								</P>
 							</div>
 						</div>
-						
-						
-							
-							
-						
 					
 						<div class="response">
 							<h3>Comentarios</h3>
@@ -58,8 +53,8 @@
 								                	<li><button class="btn-responder btn btn-default">Responder</button></li>
 								                	<div class="responder opinion" style="margin-top:10px">
 								                		<form>
-															<textarea placeholder="Mensaje" name="comentario" id="comentario" required></textarea>
-															<a href="#" id="upload_comentario" id_usuario="{{user._id}}" id_articulo="{{item._id}}" class="btn btn-default"> ENVIAR </a>
+															<textarea class="comentario_recursive" placeholder="Mensaje" name="comentario_recursive" id="comentario" required></textarea>
+															<a href="#" class="upload_comentario_recursive" id_usuario="{{user._id}}" id_articulo="{{item._id}}" id_padre="{{comentario._id}}" class="btn btn-default"> ENVIAR </a>
 														</form>
 								                	</div>
 								                </ul>
@@ -85,8 +80,8 @@
 								                	<li><button class="btn-responder btn btn-default">Responder</button></li>
 								                	<div class="responder opinion" style="margin-top:10px">
 								                		<form>
-															<textarea placeholder="Mensaje" name="comentario" id="comentario" required></textarea>
-															<a href="#" id="upload_comentario" id_usuario="{{user._id}}" id_articulo="{{item._id}}" class="btn btn-default"> ENVIAR </a>
+															<textarea class="comentario_recursive" placeholder="Mensaje" name="comentario_recursive" id="comentario" required></textarea>
+															<a href="#" class="upload_comentario_recursive" id_usuario="{{user._id}}" id_articulo="{{item._id}}" id_padre="{{comentario._id}}" class="btn btn-default"> ENVIAR </a>
 														</form>
 								                	</div>
 								                </ul>

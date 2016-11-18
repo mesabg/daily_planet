@@ -8,6 +8,7 @@ class Model:
     def __init__(self):
         self.client = MongoClient()
         self.db = self.client.daily_planet_db
+        self.termine = False
         
     def getSixFeedPub(self,inicio,tipo,busqueda):
         if tipo == "Fecha":
@@ -136,7 +137,35 @@ class Model:
             self.db.articulos.update({'_id':_id_art},{'$push':{'favoritos':_id}})
             return True
     
-    
+    def upload_comentario_recursive(self,id_articulo, id_usuario,id_padre, text):
+        def search_recursive(comentarios, _id):
+            for comentario in comentarios:
+                if self.termine:
+                    return []
+                if comentario['_id'] == _id:
+                    self.termine = True
+                    return [ comentario['_id'] ]
+                else:
+                    return [ comentario['_id'] ] + search_recursive(comentario['respuestas'], _id)
+        resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})
+        array = search_recursive(resp,id_padre)
+        
+        self.termine = False
+        print(array)
+                    
+       # [ 1, 4, 6, 8, 12 ]
+       # self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
+            
+       # resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})
+        
+       # nombre = self.db.usuarios.find_one({'_id':{'$eq':id_usuario}})['nombre']
+    #    _idcomment = int (self.db.articulos.find_one({'_id':{'$eq':id_articulo}})['n_comment']) + 1
+     #   self.db.articulos.update({'_id':id_articulo},{ '$inc': { 'n_comment': _idcomment }})
+        
+      #  data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':str(datetime.datetime.now()),'respuestas':[] }
+       # data_ = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':datetime.datetime.now(),'respuestas':[] }
+    #    self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
+        return data
     
     
     
