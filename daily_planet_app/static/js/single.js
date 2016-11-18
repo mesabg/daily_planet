@@ -34,6 +34,10 @@ function comment(){
         $("#fondo").prepend(div);
         
         $("#comentario").val("");
+        
+        $(".btn-responder").click(function(){
+	    	$(this).parent().siblings('.responder').slideToggle("slow");
+	    });
     })
     .fail(function(error) {
         console.log("error", error);
@@ -59,11 +63,15 @@ function comment_recursive(padre,yo){
     .done(function(data) {
         /*Render*/
         
-        var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+data.nombre+'" alt=""> <h5>' + data.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+data.cuerpo+'</p>   <ul> <li>' + data.fecha + '</li> <li> <a href="#">Responder</a> </li> </ul> </div>  </div>'   )
+        var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+data.nombre+'" alt=""> <h5>' + data.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+data.cuerpo+'</p>   <ul> <li>' + data.fecha + '</li> <li><button class="btn-responder btn btn-default">Responder</button></li> </ul> </div>  </div>'   )
         
         padre.prepend(div);
         
         yo.siblings(".comentario_recursive").val("");
+        
+        $(".btn-responder").click(function(){
+	    	$(this).parent().siblings('.responder').slideToggle("slow");
+	    });
 
     })
     .fail(function(error) {
