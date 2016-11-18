@@ -3,7 +3,9 @@ jQuery(document).ready(function($) {
         comment();
     });
     
-    $(".resp").click(function(){
+    $(".resp.btn.btn-default").click(function(){
+    	console.log("ENTRE AQUI")
+    	console.log($(this).siblings('.responder'))
     	$(this).siblings('.responder').slideToggle("slow");
         //$(".responder")
     });
