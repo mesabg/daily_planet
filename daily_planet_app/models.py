@@ -163,18 +163,18 @@ class Model:
         
        # a = db.articulos.findOne({'_id':1},{'comentarios':1})
         #a.finc
-        data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':str(datetime.datetime.now()),'respuestas':[] }
+       # data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':str(datetime.datetime.now()),'respuestas':[] }
   
        # [ 1, 4, 6, 8, 12 ]
        # self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
             
        # resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})
         
-       # nombre = self.db.usuarios.find_one({'_id':{'$eq':id_usuario}})['nombre']
-    #    _idcomment = int (self.db.articulos.find_one({'_id':{'$eq':id_articulo}})['n_comment']) + 1
+        nombre = self.db.usuarios.find_one({'_id':{'$eq':id_usuario}})['nombre']
+        _idcomment = int (self.db.articulos.find_one({'_id':{'$eq':id_articulo}})['n_comment']) + 1
      #   self.db.articulos.update({'_id':id_articulo},{ '$inc': { 'n_comment': _idcomment }})
         
-      #  data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':str(datetime.datetime.now()),'respuestas':[] }
+        data = {'_id':_idcomment,'nombre':nombre,'cuerpo':text,'fecha':str(datetime.datetime.now()),'respuestas':[] }
        # data_ = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':datetime.datetime.now(),'respuestas':[] }
     #    self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
         return data
