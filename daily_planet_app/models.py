@@ -129,7 +129,7 @@ class Model:
         
         
     def addfav(self,_id_art,_id):
-        array = self.db.articulos.find_one({'_id':_id_art})
+        array = self.db.articulos.find_one({'_id':int(float(_id_art))})
         
         print("-------------------------------------------------------")
         print(_id_art)
