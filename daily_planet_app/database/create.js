@@ -9,7 +9,7 @@ var array_usuarios = [
     {
         _id: 1,
         correo: "ricardo@gmail.com",
-        password: 123456789,
+        password: "123456789",
         tipo: "editor",  
         nombre: "Ricardo",
         avatar: "local_images/user/1.png",
@@ -18,7 +18,7 @@ var array_usuarios = [
     {
         _id: 2,
         correo: "moises@gmail.com",
-        password: 123456789,
+        password: "123456789",
         tipo: "autor",
         nombre: "Moises",
         avatar: "local_images/user/2.png",
