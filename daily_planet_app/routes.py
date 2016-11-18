@@ -136,7 +136,7 @@ def create_routes(app, model):
             # Move the file form the temporal folder to
             # the upload folder we setup
             image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
-            model.modificar(_id,nombre,resumen,palabras,'/art/'+filename,cuerpo,editor)
+            model.modificar(_id,nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,editor)
             return render_template('opexito.html',msg="Modificación exitosa")
         return render_template('opexito.html',msg="Tipo de archivo incorrecto")
         
