@@ -84,7 +84,12 @@ class Model:
         respuesta2 = self.db.usuarios.find_one({'nombre':{'$eq':nombre}})
         
         if not respuesta and not respuesta2:
-            self.db.usuarios.insert_one({'correo':email,'password':password, 'tipo': tipo, 'nombre': nombre, 'avatar': "local_images/user/1.png", 'descripcion': "vacio"})
+            id_all = self.db.usuarios.aggregate([{'$sort'{'_id':-1}},{'$limit':1}])
+            _id_ = None
+            for elem in id_all:
+                _id_ = elem
+            id_number = _id_['_id'] + 1
+            self.db.usuarios.insert_one({'_id':id_number,'correo':email,'password':password, 'tipo': tipo, 'nombre': nombre, 'avatar': "local_images/user/1.png", 'descripcion': "vacio"})
             return True
         else:
             return False
@@ -111,7 +116,12 @@ class Model:
         return
     
     def crear(self,nombre,resumen,palabras,image,cuerpo,autor):
-        self.db.articulos.insert_one({'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo,'autor':autor,'editor':[],'comentarios':[],'categoria':'Noticias','fecha':datetime.datetime.now(),'editando':'No','publicado':False,'favoritos':[]})
+        id_all = self.db.articulos.aggregate([{'$sort'{'_id':-1}},{'$limit':1}])
+        _id_ = None
+        for elem in id_all:
+            _id_ = elem
+        id_number = _id_['_id'] + 1
+        self.db.articulos.insert_one({'_id':id_number,'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo,'autor':autor,'editor':[],'comentarios':[],'categoria':'Noticias','fecha':datetime.datetime.now(),'editando':'No','publicado':False,'favoritos':[]})
         return
     
     
