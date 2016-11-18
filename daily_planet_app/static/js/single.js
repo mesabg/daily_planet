@@ -51,10 +51,13 @@ function comment(){
 
 
 function comment_recursive(padre,yo){
+	console.log("ENTRE A LA FUNCION");
 	if (yo.val()=="") return;
 	var id_articulo = parseInt(yo.attr('id_articulo'));
     var id_usuario = parseInt(yo.attr('id_usuario'));
     var id_padre = parseInt(yo.attr('id_padre'));
+    
+    console.log("PASE DEL RETURN");
     
     $.ajax({
         url: '/upload_comentario_recursive?id_articulo='+id_articulo+'&id_usuario='+id_usuario+'&id_padre='+id_padre,
