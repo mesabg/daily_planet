@@ -10,6 +10,8 @@ jQuery(document).ready(function($) {
 
 
 function load_more_nopub(){
+    var tipo = $("#load_more_nopub").attr("tipo_usuario");
+    
     $.ajax({
         url: '/get_no_pub',
         type: 'GET',
@@ -19,7 +21,11 @@ function load_more_nopub(){
     .done(function(data) {
         /*Render*/
         for(var i=0; i<data.length;i++){
-            var tr = $('<tr><td class="Nombre">'+data[i].nombre+'</td> <td class="Fecha">'+data[i].fecha+'</td> <td><center>'+data[i].editando+'</center></td> <td><a href="/modificar_articulo?id='+data[i]._id+'&nombre='+data[i].nombre+'&resumen='+data[i].resumen+'&palabras='+data[i].palabras+'&cuerpo='+data[i].cuerpo+'&imagen='+data[i].imagen+'" class="btn btn-warning col-md-6">Modificar</a> <a href="/publicar?editor=1&id='+data[i]._id+'" class="btn btn-success col-md-6" >Publicar</a></td></tr>')
+            if(tipo=="autor"){
+                var tr = $('<tr><td class="Nombre">'+data[i].nombre+'</td> <td class="Fecha">'+data[i].fecha+'</td> <td><center>'+data[i].editando+'</center></td> <td><a href="/modificar_articulo?id='+data[i]._id+'&nombre='+data[i].nombre+'&resumen='+data[i].resumen+'&palabras='+data[i].palabras+'&cuerpo='+data[i].cuerpo+'&imagen='+data[i].imagen+'" style="pointer-events: none; cursor: default;" class="btn btn-warning col-md-6">Modificar</a> <a style="pointer-events: none; cursor: default;" href="/publicar?editor=1&id='+data[i]._id+'" class="btn btn-success col-md-6" >Publicar</a></td></tr>')
+            }else{
+             var tr = $('<tr><td class="Nombre">'+data[i].nombre+'</td> <td class="Fecha">'+data[i].fecha+'</td> <td><center>'+data[i].editando+'</center></td> <td><a href="/modificar_articulo?id='+data[i]._id+'&nombre='+data[i].nombre+'&resumen='+data[i].resumen+'&palabras='+data[i].palabras+'&cuerpo='+data[i].cuerpo+'&imagen='+data[i].imagen+'" class="btn btn-warning col-md-6">Modificar</a> <a href="/publicar?editor=1&id='+data[i]._id+'" class="btn btn-success col-md-6" >Publicar</a></td></tr>')
+            }
             $("#table").append(tr);
         }
         if(data.length < 6){
