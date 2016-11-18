@@ -3,9 +3,9 @@ jQuery(document).ready(function($) {
         comment();
     });
     
-    $(".resp").click(function(){
-    	$($(this).parent().children('.responder')[0]).slideToggle("slow");
-    	console.log($(this).siblings('.responder'));
+    $(".btn-responder").click(function(){
+    	$(this).parent().siblings('.responder').slideToggle("slow");
+    	console.log($(this).parent().siblings('.responder'));
     });
     
     $(".responder").hide(); 
