@@ -3,15 +3,9 @@ jQuery(document).ready(function($) {
         comment();
     });
     
-    $(".btn-responder").click(function(){
+    $(".resp").click(function(){
     	$(this).siblings('.responder').slideToggle("slow");
         //$(".responder")
-    });
-    
-    $(".responder").click(function(){
-    	$(this).siblings('.responder').slideToggle("slow");
-        //$(".responder")
-         $(".responder").toggle();
     });
     
     $(".responder").toggle();
