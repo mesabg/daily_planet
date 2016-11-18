@@ -152,7 +152,7 @@ class Model:
                     return [ comentario._id ] + search_recursive(comentario['respuestas'], _id)
                     
         
-        resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})
+        resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})['comentarios']
         print("---------------------------------------------")
         print(resp)
         print("---------------------------------------------")
