@@ -4,8 +4,9 @@ jQuery(document).ready(function($) {
     });
     
     $(".resp").click(function(){
-    	$(this).next().slideToggle("slow");
-    	console.log($(this).next());
+    	$(".responder").slideToggle("slow");
+    	//$(this).next().slideToggle("slow");
+    	//console.log($(this).next());
     	//$($(this).siblings('.responder')).slideToggle("slow");
     	//$.each($(this).siblings('.responder'),function(index, elem){
     	//	$(elem).slideToggle("slow");
