@@ -91,6 +91,12 @@ class Model:
             return False
         
     def publicar(self,_id,editor):
-        self.db.articulos.update({'_id':_id},{'$set':{'editor':editor,'publicado':True}})
+        self.db.articulos.update({'_id':_id},{'$push':{'editor':editor}})
+        self.db.articulos.update({'_id':_id},{'$set':{'publicado':True}})
         return True
+    
+    def modificar(self,_id,nombre,resumen,palabras,image,cuerpo,editor):
+        self.db.articulos.update({'_id':_id},{'$push':{'editor':editor}})
+        self.db.articulos.update({'_id':_id},{'$set':{'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo}})
+        return
         

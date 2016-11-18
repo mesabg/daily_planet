@@ -5,7 +5,7 @@
 		<div class="blog">
 			<!-- container -->
 			<div class="container">
-				<form action="/modificar_articulo_save" method="POST">
+				<form action="/modificar_articulo_save?id={{data._id}}&editor=1" method="POST">
 					<div class="col-md-12 blog-top-left-grid">
 						<div class="left-blog left-single">
 							<div class="blog-left">
@@ -30,7 +30,7 @@
 									<br>
 									<div class="form-inline">
 										<label for="keywords" style="width: 150px">Palabras claves: </label>
-										<input type="text" class="form-control" id="keywords" name="palbras" style="width: 250px" value="{{data.palabras}}" required>
+										<input type="text" class="form-control" id="keywords" name="palabras" style="width: 250px" value="{{data.palabras}}" required>
 									</div>
 									<br>
 								</div>	</center>
@@ -39,7 +39,7 @@
 									<br>
 									<div class="form-inline">
 										<label for="image" style="width: 150px">Imagen: </label>
-										<input type="file" class="btn btn-primary" style="width: 350px" id="image">
+										<input type="file" class="btn btn-primary" name="image" style="width: 350px" id="image" >
 									</div>
 									<br>
 									<div class="form-inline">

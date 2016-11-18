@@ -6,9 +6,15 @@ import json
 
 
 def create_routes(app, model):
+    app.config['UPLOAD_FOLDER'] = 'static/local_images'
+    app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg'])
     app.config['SESSION_TYPE'] = 'memcached'
     app.config['SECRET_KEY'] = 'super secret key'
     session = Session()
+    
+    def allowed_file(filename):
+        return '.' in filename and \
+               filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
     
     #Routes Definition
     @app.route('/')
@@ -112,10 +118,25 @@ def create_routes(app, model):
         return render_template('modificar_articulo.html', data=obj)
         
         
-    @app.route('/modificar_articulo_save', methods=['POST'])
+    @app.route('/modificar_articulo_save', methods=['GET','POST'])
     def modificar_articulo_save():
-        return render_template('opexito.html')
-        
+        image = request.file['image']
+        nombre  = request.form['nombre']
+        resumen = request.form['resumen']
+        palabras = request.form['palabras']
+        cuerpo = request.form['cuerpo']
+        _id = int(request.args.get('id'))
+        editor = int(request.args.get('editor'))
+        #File 
+        # Check if the file is one of the allowed types/extensions
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            # Move the file form the temporal folder to
+            # the upload folder we setup
+            image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
+            model.modificar(_id,nombre,resumen,palabras,'/art/'+filename,cuerpo,editor)
+            return render_template('opexito.html',msg="Modificación exitosa")
+        return render_template('opexito.html',msg="Tipo de archivo incorrecto")
         
     @app.route('/publicar', methods=['GET'])
     def publicar():
