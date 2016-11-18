@@ -2,6 +2,14 @@ jQuery(document).ready(function($) {
     $("#upload_comentario").click(function(){
         comment();
     });
+    
+    $(".btn-responder").click(function(){
+    	$(this).siblings('.responder').toggle();
+        //$(".responder")
+    });
+    
+    $(".responder").toggle();
+    
 });
 
 function comment(){

@@ -129,17 +129,7 @@ class Model:
         
         
     def addfav(self,_id_art,_id):
-        array = self.db.articulos.find_one({'_id':int(float(_id_art))})
-        
-        print("-------------------------------------------------------")
-        print(_id_art)
-        print(_id)
-        
-        print("-------------------------------------------------------")
-        print(array)
-        print(array['favoritos'])
-        
-        print("-------------------------------------------------------")
+        array = self.db.articulos.find_one({'_id':int(float(_id_art))})['favoritos']
         if _id in array:
             return False
         else:

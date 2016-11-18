@@ -55,7 +55,13 @@
 								                
 								                <ul>
 								                	<li>{{comentario.fecha}}</li>
-								                	<li><a href="#">Responder</a></li>
+								                	<li><a class="btn-responder">Responder</a></li>
+								                	<div class="responder">
+								                		<form>
+															<textarea placeholder="Mensaje" name="comentario" id="comentario" required></textarea>
+															<a id="upload_comentario" id_usuario="{{user._id}}" id_articulo="{{item._id}}" class="btn btn-default"> ENVIAR </a>
+														</form>
+								                	</div>
 								                </ul>
 								                
 								                <div class="media response-info">
@@ -76,7 +82,13 @@
 							                	<p>{{comentario.cuerpo}}</p>
 								                <ul>
 								                	<li>{{comentario.fecha}}</li>
-								                	<li><a href="#">Responder</a></li>
+								                	<li><a class="btn-responder">Responder</a></li>
+								                	<div class="responder">
+								                		<form>
+															<textarea placeholder="Mensaje" name="comentario" id="comentario" required></textarea>
+															<a id="upload_comentario" id_usuario="{{user._id}}" id_articulo="{{item._id}}" class="btn btn-default"> ENVIAR </a>
+														</form>
+								                	</div>
 								                </ul>
 							                </div>
 							                <div class="clearfix"> </div>
