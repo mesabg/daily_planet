@@ -84,7 +84,7 @@ class Model:
         respuesta2 = self.db.usuarios.find_one({'nombre':{'$eq':nombre}})
         
         if not respuesta and not respuesta2:
-            id_all = self.db.usuarios.aggregate([{'$sort'{'_id':-1}},{'$limit':1}])
+            id_all = self.db.usuarios.aggregate([{'$sort':{'_id':-1}},{'$limit':1}])
             _id_ = None
             for elem in id_all:
                 _id_ = elem
@@ -116,7 +116,7 @@ class Model:
         return
     
     def crear(self,nombre,resumen,palabras,image,cuerpo,autor):
-        id_all = self.db.articulos.aggregate([{'$sort'{'_id':-1}},{'$limit':1}])
+        id_all = self.db.articulos.aggregate([{'$sort':{'_id':-1}},{'$limit':1}])
         _id_ = None
         for elem in id_all:
             _id_ = elem
