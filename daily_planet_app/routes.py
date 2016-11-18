@@ -38,9 +38,7 @@ def create_routes(app, model):
     @app.route('/logout')
     def logout():
         session['user'] = None
-    	return render_template('opexito.html', msg="Log Out Exitoso", user=session['user'])
-    	
-   
+    	return render_template('opexito.html', msg="Log Out Exitoso", user=None)
 #   @app.route('/login', methods = ['GET', 'POST'])
 #def login():
 #   if request.method == 'POST':
