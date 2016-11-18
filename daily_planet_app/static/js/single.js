@@ -31,13 +31,15 @@ function comment(){
         
         var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+data.nombre+'" alt=""> <h5>' + data.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+data.cuerpo+'</p>   <ul> <li>' + data.fecha + '</li> <li><button class="btn-responder btn btn-default">Responder</button></li> </ul> </div>  </div>'   )
         
+        $($($($(div.children('div')[1]).children('ul')[0]).children('li')[1]).children('button')[0]).click(function(){
+        	$(this).parent().siblings('.responder').slideToggle("slow");
+        });
+    			 
+        							
         $("#fondo").prepend(div);
         
         $("#comentario").val("");
         
-        $(".btn-responder").click(function(){
-	    	$(this).parent().siblings('.responder').slideToggle("slow");
-	    });
     })
     .fail(function(error) {
         console.log("error", error);
@@ -65,13 +67,14 @@ function comment_recursive(padre,yo){
         
         var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image_username?name='+data.nombre+'" alt=""> <h5>' + data.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+data.cuerpo+'</p>   <ul> <li>' + data.fecha + '</li> <li><button class="btn-responder btn btn-default">Responder</button></li> </ul> </div>  </div>'   )
         
+        $($($($(div.children('div')[1]).children('ul')[0]).children('li')[1]).children('button')[0]).click(function(){
+        	$(this).parent().siblings('.responder').slideToggle("slow");
+        });
+        
         padre.prepend(div);
         
         yo.siblings(".comentario_recursive").val("");
         
-        $(".btn-responder").click(function(){
-	    	$(this).parent().siblings('.responder').slideToggle("slow");
-	    });
 
     })
     .fail(function(error) {
