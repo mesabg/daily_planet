@@ -17,21 +17,19 @@
 								<div class="col-md-4"><center><img src="images/profile.jpg" alt="" width="200" height="200"></center></div>
 								<div class="col-md-4">
 									<p class="col-md-6"><b><i>Nombre:</i></b></p>
-									<p class="col-md-6">Moisés Berenguer</p>
+									<p class="col-md-6">{{ data.nombre }}</p>
 									<p class="col-md-6"><b><i>Tipo de usuario:</i></b></p>
-									<p class="col-md-6">Editor</p>
+									<p class="col-md-6">{{ data.tipo }}</p>
 								</div>
 								<div class="col-md-4">
 									<center><h3><i>Descripción</i></h3></center>
 									<div class="internal_data">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin
-											dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus
-										fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
+										<p>{{ data.descripcion }}</p>
 									</div>
 								</div>
 							</div>
 							<br><br>
-							<center><a href="/modificar_perfil" class="btn btn-lg btn-default"><i>Modificar Perfil</i></a></center>
+							<center><a href="/modificar_perfil?id={{ data._id }}" class="btn btn-lg btn-default"><i>Modificar Perfil</i></a></center>
 						</div>
 					</div>
 					<br>

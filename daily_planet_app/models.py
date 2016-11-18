@@ -124,7 +124,17 @@ class Model:
         self.db.articulos.insert_one({'_id':id_number,'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo,'autor':autor,'editor':[],'comentarios':[],'categoria':'Noticias','fecha':datetime.datetime.now(),'editando':'No','publicado':False,'favoritos':[]})
         return
     
-    
+    def get_user_data (self, _id):
+        return self.db.usuarios.find_one({'_id':_id})
+        
+        
+    def addfav(self,_id_art,_id):
+        array = self.db.articulos.find_one({'_id':{'$eq':_id_art}},{'favoritos':1,'_id':0})['favoritos']
+        if _id in array:
+            return False
+        else:
+            self.db.articulos.update({'_id':_id_art},{'$push':{'favoritos':_id}})
+            return True
     
     
     

@@ -67,7 +67,7 @@ def create_routes(app, model):
     
     @app.route('/recuperar_contrasena', methods=['POST'])
     def recuperar_contrasena():
-        return render_template('opexito.html')
+        return render_template('opexito.html', user=session['user'])
     
     
     @app.route('/single', methods=['GET'])
@@ -79,9 +79,17 @@ def create_routes(app, model):
             data = doc
         return render_template('single.html', item=data, user=session['user'])
         
+    @app.route('/add_favorito', methods=['GET'])
+    def addfav():
+        _id = int(request.args.get('id'))
+        add_favorito = model.addfav(_id,session['user']['_id'])
+        if add_favorito:
+            return render_template('opexito.html',msg="Has agregado a favoritos este artículo")
+        return Response(add_favorito, status=200)
+        
     @app.route('/crear')
     def crear():
-        return render_template('crear.html', autor=session['user']['_id'])
+        return render_template('crear.html', autor=session['user']['_id'], user=session['user'])
         
         
     @app.route('/crear_save', methods=['POST'])
@@ -102,7 +110,7 @@ def create_routes(app, model):
             model.crear(nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,autor)
             return render_template('opexito.html',msg="Creación exitosa")
         
-        return render_template('opexito.html',msg="Tipo de archivo incorrecto")
+        return render_template('opexito.html',msg="Tipo de archivo incorrecto", user=session['user'])
         
         
     @app.route('/articulos_publicados', methods=['GET'])
@@ -118,7 +126,7 @@ def create_routes(app, model):
     @app.route('/modificar_articulo', methods=['GET'])
     def modificar_articulo():
         obj = {'nombre':request.args.get('nombre'),'_id':int(request.args.get('id')),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
-        return render_template('modificar_articulo.html', data=obj, editor=session['user']['_id'])
+        return render_template('modificar_articulo.html', data=obj, editor=session['user']['_id'], user=session['user'])
         
         
     @app.route('/modificar_articulo_save', methods=['GET','POST'])
@@ -138,7 +146,7 @@ def create_routes(app, model):
             # the upload folder we setup
             image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
             model.modificar(_id,nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,editor)
-            return render_template('opexito.html',msg="Modificación exitosa")
+            return render_template('opexito.html',msg="Modificación exitosa", user=session['user'])
 
         model.modificar_no_image(_id,nombre,resumen,palabras,cuerpo,editor)
         return render_template('opexito.html',msg="Modificación exitosa")
@@ -149,22 +157,24 @@ def create_routes(app, model):
         _id = int(request.args.get('id'))
         editor = int(request.args.get('editor'))
         model.publicar(_id,editor)
-        return render_template('opexito.html',msg="Publicación exitosa")
+        return render_template('opexito.html',msg="Publicación exitosa", user=session['user'])
        
         
     @app.route('/modificar_perfil')
     def modificar_perfil():
-        return render_template('modificar_perfil.html')
+        return render_template('modificar_perfil.html',user=session['user'])
         
         
     @app.route('/modificar_perfil_save', methods=['POST'])
     def modificar_perfil_save():
-        return render_template('opexito.html')
+        return render_template('opexito.html',user=session['user'])
         
         
     @app.route('/perfil')
     def perfil():
-        return render_template('perfil.html', usuario="Nombre")
+        _id = int(request.args.get('id'))
+        user_data = model.get_user_data(_id)
+        return render_template('perfil.html', data=user_data ,user=session['user'])
         
         
     @app.route('/get_no_pub', methods=['GET'])
