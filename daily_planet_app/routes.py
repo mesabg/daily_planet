@@ -128,7 +128,7 @@ def create_routes(app, model):
         palabras = request.form['palabras']
         cuerpo = request.form['cuerpo']
         _id = int(request.args.get('id'))
-        editor = int(request.args.get('editor'))
+        editor = request.args.get('editor')
         #File 
         # Check if the file is one of the allowed types/extensions
         if image and allowed_file(image.filename):
