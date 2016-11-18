@@ -227,9 +227,9 @@ def create_routes(app, model):
 
     @app.route('/upload_comentario_recursive', methods=['GET', 'POST'])
     def upload_comentario_recursive():
-        id_usuario = int(float(request.args.get('id_usuario')))
-        id_articulo = int(float(request.args.get('id_articulo')))
-        id_padre = int(float(request.args.get('id_padre')))
+        id_usuario = int(request.args.get('id_usuario'))
+        id_articulo = int(request.args.get('id_articulo'))
+        id_padre = int(request.args.get('id_padre'))
         #text = request.args.get('comentario_cuerpo')
         text = request.form['comentario_cuerpo']
         data = json.dumps(model.upload_comentario_recursive(id_articulo, id_usuario, id_padre, text))
