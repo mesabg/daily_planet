@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
     });
     
     $(".upload_comentario_recursive").click(function(){
-        comment_recursive($(this).parent().parent(), $($(this).siblings('.comentario_recursive')[0]));
+        comment_recursive($(this).parent().parent(), $($(this).siblings('.comentario_recursive')[0]), $(this));
     });
     
     
@@ -50,12 +50,12 @@ function comment(){
 }
 
 
-function comment_recursive(padre,yo){
-	console.log(yo);
-	if (yo.val()=="") return;
-	var id_articulo = parseInt(yo.attr('id_articulo'));
-    var id_usuario = parseInt(yo.attr('id_usuario'));
-    var id_padre = parseInt(yo.attr('id_padre'));
+function comment_recursive(padre,texto,boton){
+	console.log(texto, boton);
+	if (texto.val()=="") return;
+	var id_articulo = parseInt(boton.attr('id_articulo'));
+    var id_usuario = parseInt(boton.attr('id_usuario'));
+    var id_padre = parseInt(boton.attr('id_padre'));
     
     
     $.ajax({
@@ -75,7 +75,7 @@ function comment_recursive(padre,yo){
         
         padre.prepend(div);
         
-        yo.siblings(".comentario_recursive").val("");
+        texto.val("");
         
 
     })
