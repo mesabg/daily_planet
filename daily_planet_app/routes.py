@@ -81,7 +81,7 @@ def create_routes(app, model):
         
     @app.route('/add_favorito', methods=['GET'])
     def addfav():
-        _id = int(request.args.get('id'))
+        _id = request.args.get('id')
         add_favorito = model.addfav(_id,session['user']['_id'])
         if add_favorito:
             return render_template('opexito.html',msg="Has agregado a favoritos este artículo")
