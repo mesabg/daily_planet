@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
     });
     
     $(".resp").click(function(){
-    	$(this).siblings('.responder').slideToggle("slow");
+    	$($(this).parent().children('.responder')[0]).slideToggle("slow");
     	console.log($(this).siblings('.responder'));
     });
     
