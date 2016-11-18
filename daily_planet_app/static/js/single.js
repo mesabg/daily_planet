@@ -8,6 +8,12 @@ jQuery(document).ready(function($) {
         //$(".responder")
     });
     
+    $(".responder").click(function(){
+    	$(this).siblings('.responder').slideToggle("slow");
+        //$(".responder")
+         $(".responder").toggle();
+    });
+    
     $(".responder").toggle();
     
 });
