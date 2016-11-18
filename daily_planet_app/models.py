@@ -142,6 +142,7 @@ class Model:
             if not comentarios:
                 return []
             for comentario in comentarios:
+                print(comentario)
                 if self.termine:
                     return []
                 if comentario['_id'] == _id:
@@ -149,12 +150,19 @@ class Model:
                     return [ comentario['_id'] ]
                 else:
                     return [ comentario['_id'] ] + search_recursive(comentario['respuestas'], _id)
+                    
+        
         resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})
+        print("---------------------------------------------")
+        print(resp)
+        print("---------------------------------------------")
+        print("LLAMANDO A LA FUNCION")
         array = search_recursive(resp,id_padre)
         
         self.termine = False
+        print("---------------------------------------------")
         print(array)
-                    
+        print("---------------------------------------------")          
        # [ 1, 4, 6, 8, 12 ]
        # self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
             
