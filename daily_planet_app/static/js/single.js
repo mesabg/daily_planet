@@ -4,12 +4,12 @@ jQuery(document).ready(function($) {
     });
     
     $(".resp").click(function(){
-    	console.log("ENTRE AQUI")
-    	console.log($(this).siblings('.responder'))
+    	$(this).next().slideToggle("slow");
+    	console.log($(this).next());
     	//$($(this).siblings('.responder')).slideToggle("slow");
-    	$.each($(this).siblings('.responder'),function(index, elem){
-    		$(elem).slideToggle("slow");
-    	});
+    	//$.each($(this).siblings('.responder'),function(index, elem){
+    	//	$(elem).slideToggle("slow");
+    	//});
         //$(".responder")
     });
     
