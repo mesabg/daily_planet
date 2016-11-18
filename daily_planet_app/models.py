@@ -22,15 +22,14 @@ class Model:
             for lista in save:
                 if busqueda not in lista['nombre'].lower():
                     continue
-                else:
-                    if lista['publicado']:
-                        array.append(lista)
+                elif lista['publicado']:
+                    array.append(lista)
         else:
             for i in range(inicio, inicio+6):
                 if len(save) == i:
                     break
                 else:
-                    if lista['publicado']:
+                    if save[i]['publicado']:
                         array.append(save[i])
         return array
         

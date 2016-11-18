@@ -120,7 +120,7 @@ def create_routes(app, model):
         
     @app.route('/modificar_articulo_save', methods=['GET','POST'])
     def modificar_articulo_save():
-        image = request.file['file']
+        image = request.files['image']
         nombre  = request.form['nombre']
         resumen = request.form['resumen']
         palabras = request.form['palabras']
