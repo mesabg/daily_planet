@@ -62,7 +62,7 @@ function comment_recursive(padre,texto,boton){
         url: '/upload_comentario_recursive?id_articulo='+id_articulo+'&id_usuario='+id_usuario+'&id_padre='+id_padre,
         dataType: 'json',
         type: 'POST',
-        data: { comentario_cuerpo: yo.siblings(".comentario_recursive").val() }
+        data: { comentario_cuerpo: texto.val() }
     })
     .done(function(data) {
         /*Render*/
