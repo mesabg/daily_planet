@@ -3,13 +3,7 @@ jQuery(document).ready(function($) {
         comment();
     });
     
-    $(document).on ("click", "button.btn-responder.btn.btn-default", function () {
-        alert("desde aqui");
-    });
-    
     $("button.btn-responder.btn.btn-default").click(function(){
-    	console.log("Hola");
-    	console.log($(this));
     	$(this).parent().siblings('.responder').slideToggle("slow");
     });
     
