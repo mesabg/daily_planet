@@ -217,8 +217,8 @@ def create_routes(app, model):
         
     @app.route('/upload_comentario', methods=['GET', 'POST'])
     def upload_comentario():
-        id_usuario = request.args.get('id_usuario')
-        id_articulo = request.args.get('id_articulo')
+        id_usuario = int(request.args.get('id_usuario'))
+        id_articulo = int(request.args.get('id_articulo'))
         #text = request.args.get('comentario_cuerpo')
         text = request.form['comentario_cuerpo']
         data = json.dumps(model.upload_comentario(id_articulo, id_usuario, text))
