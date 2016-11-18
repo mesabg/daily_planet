@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
         comment();
     });
     
-    $(".btn-responder").click(function(){
+    $("button.btn-responder.btn.btn-default").click(function(){
     	console.log("Hola");
     	console.log($(this));
     	$(this).parent().siblings('.responder').slideToggle("slow");
