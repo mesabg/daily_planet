@@ -4,11 +4,10 @@ jQuery(document).ready(function($) {
     });
 });
 
-
 function comment(){
     if ( $("#comentario").val()=="" ) return;
     var id_articulo = parseInt($("#upload_comentario").attr('id_articulo'));
-    var id_usuario = parseInt($("#upload_comentario").attr('id_usuario'));
+    var id_usuario = $("#upload_comentario").attr('id_usuario');
     $.ajax({
         url: '/upload_comentario?id_articulo='+id_articulo+'&id_usuario='+id_usuario,
         dataType: 'json',
