@@ -153,16 +153,18 @@ class Model:
                     
         
         resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})['comentarios']
-        print("---------------------------------------------")
-        print(resp)
-        print("---------------------------------------------")
-        print("LLAMANDO A LA FUNCION")
         array = search_recursive(resp,id_padre)
-        
         self.termine = False
-        print("---------------------------------------------")
-        print(array)
-        print("---------------------------------------------")          
+        
+       # for elem in array 
+            
+        
+        #self.db.articulos.update({'_id':id_articulo},{ '$push': { 'comentarios.respuestas': _idcomment }})
+        
+       # a = db.articulos.findOne({'_id':1},{'comentarios':1})
+        #a.finc
+        data = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':str(datetime.datetime.now()),'respuestas':[] }
+  
        # [ 1, 4, 6, 8, 12 ]
        # self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
             
