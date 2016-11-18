@@ -145,11 +145,11 @@ class Model:
                 print(comentario)
                 if self.termine:
                     return []
-                if comentario._id == _id:
+                if comentario['_id'] == _id:
                     self.termine = True
-                    return [ comentario._id ]
+                    return [ comentario['_id'] ]
                 else:
-                    return [ comentario._id ] + search_recursive(comentario['respuestas'], _id)
+                    return [ comentario['_id'] ] + search_recursive(comentario['respuestas'], _id)
                     
         
         resp = self.db.articulos.find_one({'_id':id_articulo},{'comentarios':1})['comentarios']
