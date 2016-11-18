@@ -139,6 +139,8 @@ class Model:
     
     def upload_comentario_recursive(self,id_articulo, id_usuario,id_padre, text):
         def search_recursive(comentarios, _id):
+            if not comentarios:
+                return []
             for comentario in comentarios:
                 if self.termine:
                     return []
