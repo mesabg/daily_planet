@@ -30,8 +30,8 @@ def create_routes(app, model):
     	log_in = model.login(email, password)
     	if not log_in:
     	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
-    	session['username'] = log_in['_id'];
-    	print(session['username'])
+    	session['user'] = log_in;
+    	print(session['user'])
     	return render_template('index.html')
     	
     @app.route('/logout')
@@ -117,7 +117,7 @@ def create_routes(app, model):
     @app.route('/modificar_articulo', methods=['GET'])
     def modificar_articulo():
         obj = {'nombre':request.args.get('nombre'),'_id':int(request.args.get('id')),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
-        return render_template('modificar_articulo.html', data=obj)
+        return render_template('modificar_articulo.html', data=obj, editor=session['user']['_id'])
         
         
     @app.route('/modificar_articulo_save', methods=['GET','POST'])
