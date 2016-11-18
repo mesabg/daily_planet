@@ -26,7 +26,7 @@ def create_routes(app, model):
     @app.route('/login', methods=['POST'])
     def login():
     	email = request.form['email']
-    	password  = request.form['password']
+    	password  = int(request.form['password'])
     	log_in = model.login(email, password)
     	if not log_in:
     	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
