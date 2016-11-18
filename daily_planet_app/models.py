@@ -102,4 +102,31 @@ class Model:
             self.db.articulos.update({'_id':_id},{'$push':{'editor':editor}})
         self.db.articulos.update({'_id':_id},{'$set':{'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo}})
         return
+    
+    def modificar_no_image(self,_id,nombre,resumen,palabras,cuerpo,editor):
+        editores = self.db.articulos.find_one({'_id':_id},{'_id':0,'editor':1})
+        if not editor in editores['editor']:
+            self.db.articulos.update({'_id':_id},{'$push':{'editor':editor}})
+        self.db.articulos.update({'_id':_id},{'$set':{'nombre':nombre,'resumen':resumen,'palabras':palabras,'cuerpo':cuerpo}})
+        return
+    
+    def crear(self,nombre,resumen,palabras,image,cuerpo,autor):
+        self.db.articulos.insert_one({'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo,'autor':autor,'editor':[],'comentarios':[],'categoria':'Noticias','fecha':datetime.datetime.now(),'editando':'No','publicado':False,'favoritos':[]})
+        return
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         

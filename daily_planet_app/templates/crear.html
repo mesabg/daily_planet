@@ -4,7 +4,7 @@
 		<div class="blog">
 			<!-- container -->
 			<div class="container">
-				<form action="/crear_save" method="POST">
+				<form action="/crear_save?autor={{autor}}" method="POST" enctype="multipart/form-data">
 				<div class="col-md-12 blog-top-left-grid">
 					<div class="left-blog left-single">
 						<div class="blog-left">
@@ -21,17 +21,17 @@
 							<center><div class="col-md-6 blog-top-left-grid">
 								<div class="form-inline">
 		                          <label for="text" style="width: 150px">Título: </label>
-		                          <input type="text" class="form-control" id="text" style="width: 250px">
+		                          <input type="text" class="form-control" id="text" style="width: 250px" name="nombre"required>
 		                        </div>
 		                        <br>
 		                        <div class="form-inline">
 		                          <label for="text" style="width: 150px">Breve Resumen: </label>
-		                          <textarea class="form-control" rows="5" id="comment"  style="width: 250px"></textarea>
+		                          <textarea class="form-control" name="resumen" rows="5" id="comment"  style="width: 250px" required></textarea>
 		                        </div>
 		                        <br>
 		                        <div class="form-inline">
 		                          <label for="text" style="width: 150px">Palabras claves: </label>
-		                          <input type="text" class="form-control" id="text" style="width: 250px">
+		                          <input type="text" class="form-control" id="text" style="width: 250px" name="palabras" required>
 		                        </div> 
 		                        <br>
 
@@ -44,12 +44,9 @@
 								<br>
 								<div class="form-inline">
 		                          <label for="text" style="width: 150px">Imagen: </label>
-		                          <button class="btn btn-primary" style="width: 250px">Examinar</button>
+		                          <input type="file" class="btn btn-primary" name="image" style="width: 350px" id="image" >
 		                        </div>
 		                        <br>
-		                        <div class="form-inline">
-		                          <center><img src="images/icon1.png" ></center>
-		                        </div>
 		                        <br>
 
 							</div></center>					
@@ -65,7 +62,7 @@
 									<h3>Cuerpo del artículo</h3>								
 								</div>
 
-								<center>  <textarea class="form-control" rows="5" id="comment"  style="width: 100%"></textarea> </center>
+								<center>  <textarea class="form-control" rows="5" id="comment"  style="width: 100%" name="cuerpo" required></textarea> </center>
 								<br>
 
 								<center><button type="submit" class="btn btn-success">Crear</button> </center>

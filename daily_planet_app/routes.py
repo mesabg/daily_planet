@@ -96,12 +96,28 @@ def create_routes(app, model):
         
     @app.route('/crear')
     def crear():
-        return render_template('crear.html')
+        return render_template('crear.html', autor=session['user']['_id'])
         
         
     @app.route('/crear_save', methods=['POST'])
     def crear_save():
-        return render_template('crear_save.html')
+        image = request.files['image']
+        nombre  = request.form['nombre']
+        resumen = request.form['resumen']
+        palabras = request.form['palabras']
+        cuerpo = request.form['cuerpo']
+        autor = request.args.get('autor')
+        #File 
+        # Check if the file is one of the allowed types/extensions
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            # Move the file form the temporal folder to
+            # the upload folder we setup
+            image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
+            model.crear(nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,autor)
+            return render_template('opexito.html',msg="Creación exitosa")
+        
+        return render_template('opexito.html',msg="Tipo de archivo incorrecto")
         
         
     @app.route('/articulos_publicados', methods=['GET'])
@@ -138,7 +154,10 @@ def create_routes(app, model):
             image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
             model.modificar(_id,nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,editor)
             return render_template('opexito.html',msg="Modificación exitosa")
-        return render_template('opexito.html',msg="Tipo de archivo incorrecto")
+
+        model.modificar_no_image(_id,nombre,resumen,palabras,cuerpo,editor)
+        return render_template('opexito.html',msg="Modificación exitosa")
+
         
     @app.route('/publicar', methods=['GET'])
     def publicar():
