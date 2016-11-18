@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
     
     $(".btn-responder").click(function(){
     	$(this).parent().siblings('.responder').slideToggle("slow");
-    	console.log($(this).parent().siblings('.responder'));
+    	console.log($(this).parent());
     });
     
     $(".responder").hide(); 
