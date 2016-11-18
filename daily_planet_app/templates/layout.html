@@ -43,16 +43,16 @@
 							<li><a href="/">PRINCIPAL</a></li>
 							<li><a href="/articulos_publicados">DESTACADOS</a></li>
 							{% if user %}
-								{% if user.tipo == "editor" % }
+								{% if user.tipo == "editor" %}
 									<li><a href="/articulos_no_publicados" role="button" data-toggle="modal" data-target="#login-modal">ARTICULOS NO PUBLICADOS</a></li>
 								{% endif %}
 								
-								{% if user.tipo == "autor" % }
+								{% if user.tipo == "autor" %}
 									<li><a href="/articulos_no_publicados" role="button" data-toggle="modal" data-target="#login-modal">ARTICULOS NO PUBLICADOS</a></li>
 									<li><a href="/crear" role="button" data-toggle="modal" data-target="#login-modal">CREAR ARTICULO</a></li>	
 								{% endif %}
 								
-								{% if user.tipo == "lector" % }
+								{% if user.tipo == "lector" %}
 										
 								{% endif %}
 								<li><a href="/logout" role="button" data-toggle="modal" data-target="#login-modal">CERRAR SESIÓN</a></li>	
