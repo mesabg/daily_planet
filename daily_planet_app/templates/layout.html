@@ -42,14 +42,31 @@
 						<ul>
 							<li><a href="/">PRINCIPAL</a></li>
 							<li><a href="/articulos_publicados">DESTACADOS</a></li>
-							<li><a href="#" role="button" data-toggle="modal" data-target="#login-modal" onclick="login()">INICIAR SESIÓN</a></li>
-							<li><a href="/logout" role="button" data-toggle="modal" data-target="#login-modal">CERRAR SESIÓN</a></li>
-							<li><a href="/registro">REGISTRARSE</a><li>
+							{% if user %}
+								{% if user.tipo == "editor" % }
+									<li><a href="/articulos_no_publicados" role="button" data-toggle="modal" data-target="#login-modal">ARTICULOS NO PUBLICADOS</a></li>
+								{% endif %}
+								
+								{% if user.tipo == "autor" % }
+									<li><a href="/articulos_no_publicados" role="button" data-toggle="modal" data-target="#login-modal">ARTICULOS NO PUBLICADOS</a></li>
+									<li><a href="/crear" role="button" data-toggle="modal" data-target="#login-modal">CREAR ARTICULO</a></li>	
+								{% endif %}
+								
+								{% if user.tipo == "lector" % }
+										
+								{% endif %}
+								<li><a href="/logout" role="button" data-toggle="modal" data-target="#login-modal">CERRAR SESIÓN</a></li>	
+							{% else %}
+								<li><a href="#" role="button" data-toggle="modal" data-target="#login-modal" onclick="login()">INICIAR SESIÓN</a></li>
+								<li><a href="/registro">REGISTRARSE</a><li>
+							{% endif %}
 						</ul>
 					</div>
 					<div class="header-top-right">
 						<form>
-							<a href="/perfil" class="btn fix-btn">MI PERFIL</a>
+							{% if user %}
+								<a href="/perfil" class="btn fix-btn">{{ user.nombre }}</a>
+							{% endif %}
 							<input type="text" placeholder=" " required="">
 							<input type="submit" value=" ">
 							<div class="clearfix"> </div>

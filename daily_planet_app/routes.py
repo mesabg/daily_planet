@@ -21,7 +21,7 @@ def create_routes(app, model):
     #Routes Definition
     @app.route('/')
     def index():
-    	return render_template('index.html')
+    	return render_template('index.html', user=session['user'])
     
     @app.route('/login', methods=['POST'])
     def login():
@@ -32,7 +32,7 @@ def create_routes(app, model):
     	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
     	session['user'] = log_in;
     	print(session['user'])
-    	return render_template('index.html')
+    	return render_template('index.html', user=session['user'])
     	
     @app.route('/logout')
     def logout():
@@ -92,7 +92,7 @@ def create_routes(app, model):
         data = None        
         for doc in l:
             data = doc
-        return render_template('single.html', item=data)
+        return render_template('single.html', item=data, user=session['user'])
         
     @app.route('/crear')
     def crear():
@@ -122,12 +122,12 @@ def create_routes(app, model):
         
     @app.route('/articulos_publicados', methods=['GET'])
     def articulos_publicados():
-        return render_template('articulos_publicados.html')
+        return render_template('articulos_publicados.html', user=session['user'])
     
     
     @app.route('/articulos_no_publicados', methods=['GET'])
     def articulos_no_publicados():
-        return render_template('articulos_no_publicados.html')
+        return render_template('articulos_no_publicados.html', user=session['user'])
     
     
     @app.route('/modificar_articulo', methods=['GET'])
