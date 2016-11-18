@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
     });
     
     $(".upload_comentario_recursive").click(function(){
-        comment_recursive($(this).parent().parent(), $(this));
+        comment_recursive($(this).parent().parent(), $($(this).siblings('.comentario_recursive')[0]));
     });
     
     
