@@ -285,7 +285,7 @@ def create_routes(app, model):
             today = datetime.datetime.now()
             data = json.dumps( model.getSixFeedInv(n_elem,today))
         else:
-            data = json.dumps( model.getSixFeed(n_elem) )
+            data = json.dumps( model.getSixFeed(n_elem))
         return Response(data, status=200, headers=None, mimetype='application/json')
         
     @app.route('/get_feed_pub', methods=['GET'])
