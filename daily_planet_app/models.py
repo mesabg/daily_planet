@@ -71,6 +71,8 @@ class Model:
                 print("--------------------------------------")
                 print(fecha_pub[0])
                 print(fecha_today[0])
+                variable = fecha_pub[0] in fecha_today[0]
+                print(variable)
                 print("--------------------------------------")
                 if save[i]['publicado'] and fecha_pub[0] in fecha_today[0]:
                     array.append(save[i])
