@@ -98,7 +98,7 @@ def create_routes(app, model):
         
     @app.route('/add_favorito', methods=['GET'])
     def addfav():
-         if session['user'] == None:
+        if session['user'] == None:
              return render_template('opexito.html', msg="No puedes agregar a favoritos si eres Invitado", user=None)
         _id = request.args.get('id')
         add_favorito = model.addfav(_id,session['user']['_id'])
