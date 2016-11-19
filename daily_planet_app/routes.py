@@ -5,6 +5,7 @@ from models import *
 import json
 from werkzeug import secure_filename
 from flask_mail import Message
+from flask_mail import Mail
 
 def create_routes(app, model):
     app.config['UPLOAD_FOLDER'] = 'static/local_images'
