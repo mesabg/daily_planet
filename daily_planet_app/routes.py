@@ -13,6 +13,8 @@ def create_routes(app, model):
     app.config['SECRET_KEY'] = 'super secret key'
     session = Session()
     session['user'] = None
+    mail = Mail()
+    mail.init_app(app)
     
     def allowed_file(filename):
         return '.' in filename and \
