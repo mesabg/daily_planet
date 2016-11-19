@@ -15,15 +15,14 @@ def create_routes(app, model):
     session = Session()
     session['user'] = None
     
-    app.config['MAIL_SERVER']='smtp.yahoo.com'
+    app.config['MAIL_SERVER']='smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = 'moises.berenguer@yahoo.com'
-    app.config['MAIL_PASSWORD'] = '**05t1-zoia!!'
+    app.config['MAIL_USERNAME'] = 'moises.berenguer@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'M2o4i7s0e0s9B8e0renguer'
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     
-    mail = Mail()
-    mail.init_app(app)
+    mail = Mail(app)
     
     def allowed_file(filename):
         return '.' in filename and \
@@ -98,10 +97,10 @@ def create_routes(app, model):
         email = request.form['recoverpass_email']
         password = model.get_password(email)
         
+        print(email)
+        
         if password:
-            msg = Message("[Daily Planet - Recuperación de contraseña] :" + password,
-                      sender="moises.berenguer@gmail.com.com",
-                      recipients=[email])
+            msg = Message("[Daily Planet - Recuperación de contraseña] :" + password, sender="moises.berenguer@gmail.com.com", recipients=[email])
             mail.send(msg)
             return render_template('opexito.html', msg="La contraseña ha sido enviada a su correo." ,user=session['user'])
         else:
@@ -293,7 +292,12 @@ def create_routes(app, model):
         n_elem = int(request.args.get('number_elements')) - 6
         tipo = (request.args.get('type'))
         busqueda = (request.args.get('search'))
-        data = json.dumps( model.getSixFeedPub(n_elem,tipo,busqueda) )
+        if not session['user']:
+            today = datetime.datetime.now()
+            data = json.dumps( model.getSixFeedPubInv(n_elem,tipo,busqueda,today) )
+        else:
+            data = json.dumps( model.getSixFeedPub(n_elem,tipo,busqueda) )
+        
         return Response(data, status=200, headers=None, mimetype='application/json')
     
     @app.route('/get_image', methods=['GET'])

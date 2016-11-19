@@ -35,6 +35,34 @@ class Model:
         return array
         
         
+    def getSixFeedPubInv(self,inicio,tipo,busqueda,today):
+        if tipo == "Fecha":
+            save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1,'publicado':1,'fecha':1 }}]))
+            save_ = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1,'publicado':1 }}]))
+        else:
+            save = list(self.db.articulos.aggregate([{ '$sort': {'nombre':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1,'publicado':1,'fecha':1 }}]))
+            save_ = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1,'publicado':1 }}]))
+        array = list() 
+        
+        if busqueda != "": 
+            busqueda = busqueda.lower()
+            for lista in save:
+                if busqueda not in lista['nombre'].lower():
+                    continue
+                elif lista['publicado']:
+                    array.append({'_id':lista['_id',],'imagen':lista['imagen'], 'nombre':lista['nombre'], 'resumen':lista['resumen'],'publicado':lista['publicado']})
+        else:
+            for i in range(inicio, inicio+6):
+                if len(save) == i:
+                    break
+                else:
+                    fecha_pub = str(save[i]['fecha']).split(" ")
+                    fecha_today = str(today).split(" ")
+                    if save[i]['publicado'] and fecha_pub[0] in fecha_today[0]:
+                        array.append(save_[i])
+        return array
+        
+        
     def getSixFeedNoPub(self,inicio):
         save = list(self.db.articulos.aggregate([{ '$sort': {'fecha':1} },{'$project':{ '_id':1, 'imagen':1, 'nombre':1, 'resumen':1, 'publicado':1,'editando':1,'fecha':1,'cuerpo':1,'palabras':1 }}]))
         array = list() 
