@@ -28,12 +28,12 @@ def create_routes(app, model):
         if session['user'] != None:
             return render_template('opexito.html', msg="Debes cerrar sesión para hacer esta acción", user=None)
         email = request.form['email']
-    	password  = request.form['password']
-    	log_in = model.login(email, password)
-    	if not log_in:
-    	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
-    	session['user'] = log_in;
-    	return render_template('index.html', user=session['user'])
+        password  = request.form['password']
+        log_in = model.login(email, password)
+        if not log_in:
+            return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
+        session['user'] = log_in;
+        return render_template('index.html', user=session['user'])
     	
     @app.route('/logout')
     def logout():
@@ -270,6 +270,7 @@ def create_routes(app, model):
          
     @app.route('/get_feed', methods=['GET'])
     def get_feed():
+        today = date.today()
         n_elem = int(request.args.get('number_elements')) - 6
         data = json.dumps( model.getSixFeed(n_elem) )
         return Response(data, status=200, headers=None, mimetype='application/json')
