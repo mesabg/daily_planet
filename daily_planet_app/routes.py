@@ -14,8 +14,6 @@ def create_routes(app, model):
     app.config['SECRET_KEY'] = 'super secret key'
     session = Session()
     session['user'] = None
-    mail = Mail()
-    mail.init_app(app)
     
     app.config['MAIL_SERVER']='smtp.yahoo.com'
     app.config['MAIL_PORT'] = 465
@@ -23,6 +21,9 @@ def create_routes(app, model):
     app.config['MAIL_PASSWORD'] = '**05t1-zoia!!'
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
+    
+    mail = Mail()
+    mail.init_app(app)
     
     def allowed_file(filename):
         return '.' in filename and \

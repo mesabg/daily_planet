@@ -68,6 +68,10 @@ class Model:
             else:
                 fecha_pub = str(save[i]['fecha']).split(" ")
                 fecha_today = str(today).split(" ")
+                print("--------------------------------------")
+                print(fecha_pub[0])
+                print(fecha_today[0])
+                print("--------------------------------------")
                 if save[i]['publicado'] and fecha_pub[0] == fecha_today[0]:
                     array.append(save[i])
         return array
