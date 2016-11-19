@@ -27,8 +27,7 @@ def create_routes(app, model):
     def login():
         if session['user'] != None:
             return render_template('opexito.html', msg="Debes cerrar sesión para hacer esta acción", user=None)
-            
-    	email = request.form['email']
+        email = request.form['email']
     	password  = request.form['password']
     	log_in = model.login(email, password)
     	if not log_in:
