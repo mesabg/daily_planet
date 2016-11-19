@@ -99,9 +99,7 @@ def create_routes(app, model):
         
         if info:
             msg = Message("[Daily Planet - Recuperación de contraseña]", sender="moises.berenguer@gmail.com.com", recipients=[email])
-            msg.body = "Estimado " + info['nombre'] + ".\n" + """
-            doc
-            """Se le informa que su contraseña para acceder a nuestra plataforma es la siguiente: " + info['password']
+            msg.body = "Estimado " + info['nombre'] + ".\n" + "     Se le informa que su contraseña para acceder a nuestra plataforma es la siguiente: " + info['password']
             mail.send(msg)
             return render_template('opexito.html', msg="La contraseña ha sido enviada a su correo." ,user=session['user'])
         else:

@@ -179,7 +179,7 @@ class Model:
         for elem in id_all:
             _id_ = elem
         id_number = _id_['_id'] + 1
-        self.db.articulos.insert_one({'_id':id_number,'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo,'autor':autor,'editor':[],'comentarios':[],'categoria':'Noticias','fecha':datetime.datetime.now(),'editando':'No','publicado':False,'favoritos':[]})
+        self.db.articulos.insert_one({'_id':id_number,'nombre':nombre,'resumen':resumen,'palabras':palabras,'imagen':image,'cuerpo':cuerpo,'autor':autor,'editor':[],'comentarios':[],'categoria':'Noticias','fecha':datetime.datetime.now(),'editando':'No','publicado':False,'favoritos':[],'n_comment':0})
         return
     
     def get_user_data (self, _id):
