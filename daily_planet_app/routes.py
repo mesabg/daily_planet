@@ -5,8 +5,6 @@ from models import *
 import json
 from werkzeug import secure_filename
 
-
-
 def create_routes(app, model):
     app.config['UPLOAD_FOLDER'] = 'static/local_images'
     app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg'])
@@ -26,6 +24,9 @@ def create_routes(app, model):
     
     @app.route('/login', methods=['POST'])
     def login():
+        if session['user'] != None:
+            return render_template('opexito.html', msg="Debes cerrar sesión para hacer esta acción", user=None)
+            
     	email = request.form['email']
     	password  = request.form['password']
     	log_in = model.login(email, password)
@@ -36,6 +37,8 @@ def create_routes(app, model):
     	
     @app.route('/logout')
     def logout():
+        if session['user'] == None:
+            return render_template('opexito.html', msg="No puedes cerrar sesión sino has entrado aún", user=None)
         session['user'] = None
         return render_template('opexito.html', msg="Log Out Exitoso", user=None)
     	
@@ -78,13 +81,10 @@ def create_routes(app, model):
             return render_template('opexito.html', msg="Registro fallido, nombre o email ya existen")
         # Salvar data
         # Generar Mensage
-        
-    
     
     @app.route('/recuperar_contrasena', methods=['POST'])
     def recuperar_contrasena():
         return render_template('opexito.html', user=session['user'])
-    
     
     @app.route('/single', methods=['GET'])
     def single():
@@ -98,6 +98,8 @@ def create_routes(app, model):
         
     @app.route('/add_favorito', methods=['GET'])
     def addfav():
+         if session['user'] == None:
+             return render_template('opexito.html', msg="No puedes agregar a favoritos si eres Invitado", user=None)
         _id = request.args.get('id')
         add_favorito = model.addfav(_id,session['user']['_id'])
         if add_favorito:
@@ -106,6 +108,8 @@ def create_routes(app, model):
         
     @app.route('/crear')
     def crear():
+         if session['user'] == None:
+            return render_template('opexito.html', msg="No puedes crear artículos sino eres Autor", user=None)
         return render_template('crear.html', autor=session['user']['_id'], user=session['user'])
         
         
@@ -237,8 +241,6 @@ def create_routes(app, model):
     @app.route('/get_image', methods=['GET'])
     def get_image():
         path = 'static/' + request.args.get('path')
-        print("---------------------------")
-        print(path)
         spli = path.split(".")
         valor = spli[len(spli)-1] 
         return send_file(path, mimetype='image/'+valor)
@@ -248,8 +250,6 @@ def create_routes(app, model):
     def get_image_username():
         name = request.args.get('name')
         path = 'static/' + model.get_image_username(name)
-        print("---------------------------")
-        print(path)
         spli = path.split(".")
         valor = spli[len(spli)-1] 
         return send_file(path, mimetype='image/'+valor)
