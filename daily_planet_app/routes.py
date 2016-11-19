@@ -270,9 +270,12 @@ def create_routes(app, model):
          
     @app.route('/get_feed', methods=['GET'])
     def get_feed():
-        today = date.today()
         n_elem = int(request.args.get('number_elements')) - 6
-        data = json.dumps( model.getSixFeed(n_elem) )
+        if not session['user']:
+            today = date.today()
+            data = json.dumps( model.getSixFeedInv(n_elem,today))
+        else:
+            data = json.dumps( model.getSixFeed(n_elem) )
         return Response(data, status=200, headers=None, mimetype='application/json')
         
     @app.route('/get_feed_pub', methods=['GET'])

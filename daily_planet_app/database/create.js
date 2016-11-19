@@ -8,7 +8,7 @@ db.createCollection("articulos");
 var array_usuarios = [
     {
         _id: 1,
-        correo: "ricardo@gmail.com",
+        correo: "ricardodpds2112@gmail.com",
         password: "123456789",
         tipo: "editor",  
         nombre: "Ricardo",
@@ -17,7 +17,7 @@ var array_usuarios = [
     },
     {
         _id: 2,
-        correo: "moises@gmail.com",
+        correo: "moises.berenguer@gmail.com",
         password: "123456789",
         tipo: "autor",
         nombre: "Moises",
