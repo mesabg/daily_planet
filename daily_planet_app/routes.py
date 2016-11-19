@@ -88,7 +88,7 @@ def create_routes(app, model):
     
     @app.route('/single', methods=['GET'])
     def single():
-        if isinstance( request.args.get('id'), int ):
+        if type( request.args.get('id'))== int:
             _id = request.args.get('id')
         else:
             _id = int(request.args.get('id'))
