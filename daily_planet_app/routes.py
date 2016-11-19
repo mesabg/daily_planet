@@ -32,7 +32,6 @@ def create_routes(app, model):
     	if not log_in:
     	    return render_template('opexito.html', msg="Log In fallido, intente de nuevo")
     	session['user'] = log_in;
-    	print(session['user'])
     	return render_template('index.html', user=session['user'])
     	
     @app.route('/logout')
@@ -163,9 +162,11 @@ def create_routes(app, model):
             # the upload folder we setup
             image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
             model.modificar(_id,nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,editor)
+            session['user']=get_user_data(_id)
             return render_template('opexito.html',msg="Modificación exitosa", user=session['user'])
 
         model.modificar_no_image(_id,nombre,resumen,palabras,cuerpo,editor)
+        session['user']=get_user_data(_id)
         return render_template('opexito.html',msg="Modificación exitosa")
 
         
