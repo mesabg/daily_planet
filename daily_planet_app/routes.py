@@ -45,9 +45,21 @@ def create_routes(app, model):
         return render_template('registro.html')
         
     #profile
-    @app.route('/profile/<username>')
-    def profile(username):
-        return render_template('perfil.html', data=session['user'])
+    @app.route('/perfil/<username>')
+    def perfil(username):
+        if not session['user']:
+            return render_template('opexito.html', msg="No ha iniciado sesión", user=None)
+        
+        articulos_favoritos = model.articulos_favoritos(session['user']['_id'])
+        articulos = None
+        articulos = model.articulos(session['user']['_id'])
+        return render_template('perfil.html', data=session['user'], articulos_favoritos = articulos_favoritos, articulos = articulos )
+        
+    @app.route('/perfil/modificar/<username>')
+    def perfil_modify(username):
+        if not session['user']:
+            return render_template('opexito.html', msg="No ha iniciado sesión, no puede modificar perfil", user=None)
+        return render_template('modificar_perfil.html', data=session['user'])
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
@@ -166,21 +178,35 @@ def create_routes(app, model):
         
     @app.route('/modificar_perfil')
     def modificar_perfil():
-        return render_template('modificar_perfil.html',user=session['user'])
+        if not session['user']:
+            return render_template('opexito.html', msg="No ha iniciado sesión, no puede modificar perfil", user=None)
+        return render_template('modificar_perfil.html',data=session['user'])
         
         
     @app.route('/modificar_perfil_save', methods=['POST'])
     def modificar_perfil_save():
-        return render_template('opexito.html',user=session['user'])
+        if not session['user']:
+            return render_template('opexito.html', msg="No ha iniciado sesión, no puede modificar perfil", user=None)
+            
+        nombre = request.form['nombre']
+        avatar = request.files['avatar']
+        descripcion = request.form['descripcion']
+        _id = int(request.form['_id'])
         
-        
-    @app.route('/perfil')
-    def perfil():
-        _id = int(request.args.get('id'))
-        user_data = model.get_user_data(_id)
-        return render_template('perfil.html', data=user_data ,user=session['user'])
-        
-        
+        #modificacion
+        if avatar and allowed_file(avatar.filename):
+            filename = secure_filename(avatar.filename)
+            # Move the file form the temporal folder to
+            # the upload folder we setup
+            avatar.save(os.path.join(app.config['UPLOAD_FOLDER']+'/user', filename))
+            model.modificar_perfil(_id, nombre, descripcion, 'local_images/user/'+filename )
+            return render_template('opexito.html',msg="Modificación de perfil exitosa !", user=session['user'])
+            
+        model.modificar_perfil_no_image(_id, nombre, descripcion)
+        return render_template('opexito.html',msg="Modificación de perfil exitosa !")
+            
+
+
     @app.route('/get_no_pub', methods=['GET'])
     def get_feed_no_pub():
         n_elem = int(request.args.get('number_elements')) - 6

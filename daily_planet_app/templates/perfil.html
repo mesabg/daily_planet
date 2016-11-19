@@ -14,7 +14,7 @@
 							<center><h3><i>Información</i></h3></center>
 							<br><br>
 							<div class="data col-md-12">
-								<div class="col-md-4"><center><img src="images/profile.jpg" alt="" width="200" height="200"></center></div>
+								<div class="col-md-4"><center><img src="/get_image?path={{data.avatar}}" alt="" width="200" height="200"></center></div>
 								<div class="col-md-4">
 									<p class="col-md-6"><b><i>Nombre:</i></b></p>
 									<p class="col-md-6">{{ data.nombre }}</p>
@@ -29,172 +29,106 @@
 								</div>
 							</div>
 							<br><br>
-							<center><a href="/modificar_perfil?id={{ data._id }}" class="btn btn-lg btn-default"><i>Modificar Perfil</i></a></center>
+							<center><a href="/perfil/modificar/{{data.nombre}}" class="btn btn-lg btn-default"><i>Modificar Perfil</i></a></center>
 						</div>
 					</div>
 					<br>
 					<div class="separator_last">
 						<div class="container">
+							{% if articulos_favoritos %}
 							<div class="col-md-6">
 								<div class="col-md-12 title">
 									<center><h3><i>Artículos Favoritos</i></h3></center>
 								</div>
 								<div class="col-md-12">
-									<div id="myCarousel" class="carousel slide" data-ride="carousel">
+									<div id="carousel_favoritos" class="carousel slide" data-ride="carousel">
 										<!-- Indicators -->
 										<ol class="carousel-indicators">
-											<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-											<li data-target="#myCarousel" data-slide-to="1"></li>
-											<li data-target="#myCarousel" data-slide-to="2"></li>
-											<li data-target="#myCarousel" data-slide-to="3"></li>
+											{% for for i in range(1, articulos_favoritos|length)  %}
+											<li data-target="#carousel_favoritos" data-slide-to="{{i}}"></li>
+											{% endfor %}
 										</ol>
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner" role="listbox">
-											<div class="item active">
-												<div class="col-md-12">
-													<center><img src="images/c3.jpg" alt="Chania" width="300"></center>
-												</div>
-												<br>	
-												<div class="container">
-													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
-													</div>
-												</div>
-											</div>
+											{% for articulo in articulos_favoritos %}
+											<a href="/single?id={{articulos._id}}" >
 											<div class="item">
 												<div class="col-md-12">
-													<center><img src="images/c1.jpg" alt="Chania" width="300"></center>
+													<center><img src="/get_image?path={{articulo.imagen}}" alt="{{articulo.nombre}}" width="300"></center>
 												</div>
 												<br>	
 												<div class="container">
 													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
+														<strong> <i> <h4>{{articulo.nombre}}</h4> </i> </strong>
+														<p>{{articulo.resumen}}</p>
 													</div>
 												</div>
 											</div>
-											<div class="item">
-												<div class="col-md-12">
-													<center><img src="images/c2.jpg" alt="Flower" width="300"></center>
-												</div>
-												<br>	
-												<div class="container">
-													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<div class="col-md-12">
-													<center><img src="images/c3.jpg" alt="Flower" width="300"></center>
-												</div>
-												<br>	
-												<div class="container">
-													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
-													</div>
-												</div>
-											</div>
+											</a>
+											{% endfor %}
 										</div>
 										<!-- Left and right controls -->
-										<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+										<a class="left carousel-control" href="#carousel_favoritos" role="button" data-slide="prev">
 											<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 											<span class="sr-only">Previous</span>
 										</a>
-										<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+										<a class="right carousel-control" href="#carousel_favoritos" role="button" data-slide="next">
 											<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 											<span class="sr-only">Next</span>
 										</a>
 									</div>
 								</div>
 							</div>
+							{% endif %}
+							{% if articulos %}
 							<div class="col-md-6">
 								<div class="col-md-12 title">
+									{% if data.tipo == "editor" %}
 									<center><h3><i>Artículos Editados</i></h3></center>
+									{% elif data.tipo == "autor" %}
+									<center><h3><i>Artículos Autor</i></h3></center>
+									{% endif %}
 								</div>
 								<div class="col-md-12">
-									<div id="myCarousel" class="carousel slide" data-ride="carousel">
+									<div id="carousel_articulos" class="carousel slide" data-ride="carousel">
 										<!-- Indicators -->
 										<ol class="carousel-indicators">
-											<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-											<li data-target="#myCarousel" data-slide-to="1"></li>
-											<li data-target="#myCarousel" data-slide-to="2"></li>
-											<li data-target="#myCarousel" data-slide-to="3"></li>
+											{% for for i in range(1, articulos|length)  %}
+											<li data-target="#carousel_articulos" data-slide-to="{{i}}"></li>
+											{% endfor %}
 										</ol>
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner" role="listbox">
-											<div class="item active">
-												<div class="col-md-12">
-													<center><img src="images/c2.jpg" alt="Chania" width="300"></center>
-												</div>
-												<br>	
-												<div class="container">
-													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
-													</div>
-												</div>
-											</div>
+											{% for articulo in articulos %}
+											<a href="/single?id={{articulos._id}}" >
 											<div class="item">
 												<div class="col-md-12">
-													<center><img src="images/c3.jpg" alt="Chania" width="300"></center>
+													<center><img src="/get_image?path={{articulo.imagen}}" alt="{{articulo.nombre}}" width="300"></center>
 												</div>
 												<br>	
 												<div class="container">
 													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
+														<strong> <i> <h4>{{articulo.nombre}}</h4> </i> </strong>
+														<p>{{articulo.resumen}}</p>
 													</div>
 												</div>
 											</div>
-											<div class="item">
-												<div class="col-md-12">
-													<center><img src="images/c2.jpg" alt="Flower" width="300"></center>
-												</div>
-												<br>	
-												<div class="container">
-													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<div class="col-md-12">
-													<center><img src="images/c1.jpg" alt="Flower" width="300"></center>
-												</div>
-												<br>	
-												<div class="container">
-													<div class="col-md-12">
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed blandit massa vel mauris sollicitudin 
-															dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque eros dignissim. Phasellus 
-															fringilla hendrerit lectus nec vehicula. ultrices tellus eget ipsum ornare consectetur adipiscing elit.Sed blandit .</p>
-													</div>
-												</div>
-											</div>
+											</a>
+											{% endfor %}
 										</div>
 										<!-- Left and right controls -->
-										<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+										<a class="left carousel-control" href="#carousel_articulos" role="button" data-slide="prev">
 											<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 											<span class="sr-only">Previous</span>
 										</a>
-										<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+										<a class="right carousel-control" href="#carousel_articulos" role="button" data-slide="next">
 											<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 											<span class="sr-only">Next</span>
 										</a>
 									</div>
 								</div>
 							</div>
+							{% endif %}
 						</div>
 					</div>
 					<br>		

@@ -178,6 +178,30 @@ class Model:
        # data_ = {'_id':_idcomment,'nombre':nombre,'cuerpo':comentario,'fecha':datetime.datetime.now(),'respuestas':[] }
     #    self.db.articulos.update({'_id':id_articulo},{'$push':{'comentarios':data_}})
         return data
+        
+        
+    def modificar_perfil(self,_id,nombre,descripcion,avatar):
+        self.db.usuarios.update({'_id':_id},{'$set':{'nombre':nombre,'descripcion':descripcion,'avatar':avatar}})
+        return
+    
+    def modificar_perfil_no_image(self,_id, nombre, descripcion):
+        self.db.usuarios.update({'_id':_id},{'$set':{'nombre':nombre,'descripcion':descripcion}})
+        return
+    
+    def articulos(self,_id):
+        tipo = self.db.usuarios.find_one({'_id':_id},{'tipo':1})['tipo']
+        array = list() 
+        if tipo == "autor":
+            array = list(self.db.articulos.find({'autor':_id},{'nombre':1,'resumen':1,'imagen':1,'_id':1}))
+        else:
+            array = list( self.db.articulos.aggregate([ {'$unwind':'$editor'},{'$match': {'editor': {'$eq':_id}}}, { '$project':{'nombre':1,'resumen':1,'imagen':1,'_id':1} } ]) )
+         
+        return array
+        
+    def articulos_favoritos(self,_id):
+        return list( self.db.articulos.aggregate([ {'$unwind':'$favoritos'},{'$match': {'favoritos': {'$eq':_id}}}, { '$project':{'nombre':1,'resumen':1,'imagen':1,'_id':1} } ]) )
+    
+    
     
     
     
