@@ -187,7 +187,7 @@ class Model:
         return True
     
     def modificar_perfil_no_image(self,_id, nombre, descripcion):
-        self.db.usuarios.update({'_id':_id},{'$set':{'nombre':nombre,'descripcion':descripcion}})
+        algo = self.db.usuarios.update({'_id':_id},{'$set':{'nombre':nombre,'descripcion':descripcion}})
         print("-----------------------------------")
         print(algo)
         return True
