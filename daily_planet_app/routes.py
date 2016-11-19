@@ -93,6 +93,7 @@ def create_routes(app, model):
         data = None        
         for doc in l:
             data = doc
+        session['user']=model.get_user_data(session['user']['_id'])
         return render_template('single.html', item=data, user=session['user'])
         
     @app.route('/add_favorito', methods=['GET'])
@@ -124,8 +125,9 @@ def create_routes(app, model):
             # the upload folder we setup
             image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
             model.crear(nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,autor)
+            session['user']=model.get_user_data(autor)
             return render_template('opexito.html',msg="Creación exitosa")
-        
+        session['user']=model.get_user_data(autor)
         return render_template('opexito.html',msg="Tipo de archivo incorrecto", user=session['user'])
         
         
