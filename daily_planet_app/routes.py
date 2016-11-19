@@ -118,7 +118,7 @@ def create_routes(app, model):
             data = doc
         
         if session['user'] == None:
-            return render_template('single.html', item=data, user=None)
+            return render_template('single.html', item=data, user=session['user'])
         else:
             session['user']=model.get_user_data(session['user']['_id'])
             return render_template('single.html', item=data, user=session['user'])

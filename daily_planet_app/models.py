@@ -264,7 +264,7 @@ class Model:
     
     
     def get_info(self, email):
-        return self.db.usuarios.find_one({'correo':email}, {'password':1,'_id':0})
+        return self.db.usuarios.find_one({'correo':email})
     
     
     
