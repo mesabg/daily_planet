@@ -95,13 +95,11 @@ def create_routes(app, model):
     @app.route('/recuperar_contrasena', methods=['POST'])
     def recuperar_contrasena():
         email = request.form['recoverpass_email']
-        password = model.get_password(email)
-        
-        print(email)
+        info = model.get_info(email)
         
         if password:
             msg = Message("[Daily Planet - Recuperación de contraseña]" + password, sender="moises.berenguer@gmail.com.com", recipients=[email])
-            msg.body = "Estimado " + session['user']['nombre'] + ".\n" + " Se le informa que su contraseña para acceder a nuestra plataforma es la siguiente: " + password
+            msg.body = "Estimado " + info['nombre'] + ".\n" + " Se le informa que su contraseña para acceder a nuestra plataforma es la siguiente: " + info['password']
             mail.send(msg)
             return render_template('opexito.html', msg="La contraseña ha sido enviada a su correo." ,user=session['user'])
         else:
