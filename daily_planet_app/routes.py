@@ -100,7 +100,8 @@ def create_routes(app, model):
         print(email)
         
         if password:
-            msg = Message("[Daily Planet - Recuperación de contraseña] :" + password, sender="moises.berenguer@gmail.com.com", recipients=[email])
+            msg = Message("[Daily Planet - Recuperación de contraseña]" + password, sender="moises.berenguer@gmail.com.com", recipients=[email])
+            msg.body = "Estimado " + session['user']['nombre'] + ".\n" + " Se le informa que su contraseña para acceder a nuestra plataforma es la siguiente: " + password
             mail.send(msg)
             return render_template('opexito.html', msg="La contraseña ha sido enviada a su correo." ,user=session['user'])
         else:
@@ -117,8 +118,13 @@ def create_routes(app, model):
         data = None        
         for doc in l:
             data = doc
-        session['user']=model.get_user_data(session['user']['_id'])
-        return render_template('single.html', item=data, user=session['user'])
+        
+        if session['user'] == None:
+            return render_template('single.html', item=data, user=None)
+        else:
+            session['user']=model.get_user_data(session['user']['_id'])
+            return render_template('single.html', item=data, user=session['user'])
+        
         
     @app.route('/add_favorito', methods=['GET'])
     def addfav():
