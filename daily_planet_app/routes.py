@@ -59,7 +59,27 @@ def create_routes(app, model):
     def perfil_modify(username):
         if not session['user']:
             return render_template('opexito.html', msg="No ha iniciado sesión, no puede modificar perfil", user=None)
-        return render_template('modificar_perfil.html', user=session['user'])
+            
+        nombre = request.form['nombre']
+        avatar = request.files['avatar']
+        descripcion = request.form['descripcion']
+        _id = request.form['_id']
+        
+        #modificacion
+        if avatar and allowed_file(avatar.filename):
+            filename = secure_filename(avatar.filename)
+            # Move the file form the temporal folder to
+            # the upload folder we setup
+            avatar.save(os.path.join(app.config['UPLOAD_FOLDER']+'/user', filename))
+            model.modificar_perfil(_id, nombre, descripcion, 'local_images/user/'+filename )
+            return render_template('opexito.html',msg="Modificación de perfil exitosa !", user=session['user'])
+            
+        model.modificar_perfil_no_image(_id, nombre, descripcion)
+        return render_template('opexito.html',msg="Modificación de perfil exitosa !")
+        
+        
+        
+        
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
