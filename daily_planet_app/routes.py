@@ -17,6 +17,13 @@ def create_routes(app, model):
     mail = Mail()
     mail.init_app(app)
     
+    app.config['MAIL_SERVER']='smt.yahoo.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'moises.berenguer@yahoo.com'
+    app.config['MAIL_PASSWORD'] = '**05t1-zoia!!'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    
     def allowed_file(filename):
         return '.' in filename and \
                filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
@@ -152,9 +159,7 @@ def create_routes(app, model):
             # the upload folder we setup
             image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
             model.crear(nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,autor)
-            session['user']=model.get_user_data(autor)
-            return render_template('opexito.html',msg="Creación exitosa")
-        session['user']=model.get_user_data(autor)
+            return render_template('opexito.html',msg="Creación exitosa", user=session['user'])
         return render_template('opexito.html',msg="Tipo de archivo incorrecto", user=session['user'])
         
         
@@ -274,8 +279,9 @@ def create_routes(app, model):
     @app.route('/get_feed', methods=['GET'])
     def get_feed():
         n_elem = int(request.args.get('number_elements')) - 6
+        data = list()
         if not session['user']:
-            today = date.today()
+            today = datetime.datetime.now()
             data = json.dumps( model.getSixFeedInv(n_elem,today))
         else:
             data = json.dumps( model.getSixFeed(n_elem) )

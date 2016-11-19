@@ -66,6 +66,10 @@ class Model:
             if len(save) == i:
                 break
             else:
+                print("--------------------------------------------------------")
+                print(str(save[i]['fecha']))
+                print(str(today))
+                print("--------------------------------------------------------")
                 if save[i]['publicado'] and str(save[i]['fecha']) == str(today):
                     array.append(save[i])
         return array

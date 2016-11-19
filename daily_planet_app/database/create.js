@@ -17,7 +17,7 @@ var array_usuarios = [
     },
     {
         _id: 2,
-        correo: "moises.berenguer@gmail.com",
+        correo: "moises.berenguer@yahoo.com",
         password: "123456789",
         tipo: "autor",
         nombre: "Moises",
