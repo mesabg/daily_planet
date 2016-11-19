@@ -195,7 +195,7 @@ def create_routes(app, model):
         nombre = request.form['nombre']
         avatar = request.files['avatar']
         descripcion = request.form['descripcion']
-        _id = request.form['_id']
+        _id = int(request.form['_id'])
         
         #modificacion
         if avatar and allowed_file(avatar.filename):
