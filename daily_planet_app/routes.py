@@ -46,8 +46,8 @@ def create_routes(app, model):
         
     #profile
     @app.route('/profile/<username>')
-        def profile(username):
-            url_for('.profile', username='foo')
+    def profile(username):
+        url_for('.profile', username='foo')
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
