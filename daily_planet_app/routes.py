@@ -55,7 +55,7 @@ def create_routes(app, model):
         articulos = model.articulos(session['user']['_id'])
         return render_template('perfil.html', user=session['user'], articulos_favoritos = articulos_favoritos, articulos = articulos )
         
-    @app.route('/perfil/modificar/<username>')
+    @app.route('/perfil/modificar/<username>',  methods=['POST'])
     def perfil_modify(username):
         if not session['user']:
             return render_template('opexito.html', msg="No ha iniciado sesión, no puede modificar perfil", user=None)
