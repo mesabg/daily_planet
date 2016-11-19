@@ -68,13 +68,8 @@ class Model:
             else:
                 fecha_pub = str(save[i]['fecha']).split(" ")
                 fecha_today = str(today).split(" ")
-                print("--------------------------------------")
-                print(fecha_pub[0])
-                print(fecha_today[0])
-                variable = fecha_pub[0] in fecha_today[0]
-                print(variable)
-                print("--------------------------------------")
-                if save[i]['publicado'] and fecha_pub[0] in fecha_today[0]:
+                if save[i]['publicado'] and variable:
+                    print("ENTRE AQUI")
                     array.append(save[i])
         return array
         
