@@ -17,7 +17,7 @@ def create_routes(app, model):
     mail = Mail()
     mail.init_app(app)
     
-    app.config['MAIL_SERVER']='smt.yahoo.com'
+    app.config['MAIL_SERVER']='smtp.yahoo.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USERNAME'] = 'moises.berenguer@yahoo.com'
     app.config['MAIL_PASSWORD'] = '**05t1-zoia!!'
