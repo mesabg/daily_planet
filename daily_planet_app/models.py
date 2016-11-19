@@ -206,7 +206,8 @@ class Model:
         return list( self.db.articulos.aggregate([ {'$unwind':'$favoritos'},{'$match': {'favoritos': {'$eq':_id}}}, { '$project':{'nombre':1,'resumen':1,'imagen':1,'_id':1} } ]) )
     
     
-    
+    def get_password(self, email):
+        return self.db.usuarios.find_one({'correo':email}, {'password':1,'_id':0})['password']
     
     
     

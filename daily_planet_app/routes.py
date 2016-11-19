@@ -4,6 +4,7 @@ import datetime
 from models import *
 import json
 from werkzeug import secure_filename
+from flask_mail import Message
 
 def create_routes(app, model):
     app.config['UPLOAD_FOLDER'] = 'static/local_images'
@@ -84,7 +85,17 @@ def create_routes(app, model):
     
     @app.route('/recuperar_contrasena', methods=['POST'])
     def recuperar_contrasena():
-        return render_template('opexito.html', user=session['user'])
+        email = request.form['recoverpass_email']
+        password = model.get_password(email)
+        
+        if password:
+            msg = Message("[Daily Planet - Recuperación de contraseña] :" + password,
+                      sender="moises.berenguer@gmail.com.com",
+                      recipients=[email])
+            mail.send(msg)
+            return render_template('opexito.html', msg="La contraseña ha sido enviada a su correo." ,user=session['user'])
+        else:
+            return render_template('opexito.html', msg="Introdujo una dirección de correo incorrecta, intente de nuevo." ,user=session['user'])
     
     @app.route('/single', methods=['GET'])
     def single():
@@ -108,13 +119,23 @@ def create_routes(app, model):
         
     @app.route('/crear')
     def crear():
-         if session['user'] == None:
+        if session['user'] == None:
             return render_template('opexito.html', msg="No puedes crear artículos sino eres Autor", user=None)
+            
+        if session['user']['tipo'] == "editor" or session['user']['tipo'] == "lector":
+            return render_template('opexito.html', msg="No puedes crear artículos sino eres Autor", user=None)
+            
         return render_template('crear.html', autor=session['user']['_id'], user=session['user'])
         
         
     @app.route('/crear_save', methods=['POST'])
     def crear_save():
+        if session['user'] == None:
+            return render_template('opexito.html', msg="No puedes crear artículos sino eres Autor", user=None)
+            
+        if session['user']['tipo'] == "editor" or session['user']['tipo'] == "lector":
+            return render_template('opexito.html', msg="No puedes crear artículos sino eres Autor", user=None)
+            
         image = request.files['image']
         nombre  = request.form['nombre']
         resumen = request.form['resumen']
@@ -142,17 +163,35 @@ def create_routes(app, model):
     
     @app.route('/articulos_no_publicados', methods=['GET'])
     def articulos_no_publicados():
+        if session['user'] == None:
+            return render_template('opexito.html', msg="No puedes ver los artículos no publicados si eres Invitado", user=None)
+            
+        if session['user']['tipo'] == "lector":
+            return render_template('opexito.html', msg="No puedes ver los artículos no publicados si eres Lector", user=None)
+            
         return render_template('articulos_no_publicados.html', user=session['user'])
     
     
     @app.route('/modificar_articulo', methods=['GET'])
     def modificar_articulo():
+        if session['user'] == None:
+            return render_template('opexito.html', msg="No puedes modificar artículos sino eres Editor", user=None)
+            
+        if session['user']['tipo'] == "autor" or session['user']['tipo'] == "lector":
+            return render_template('opexito.html', msg="No puedes crear artículos sino eres Editor", user=None)
+            
         obj = {'nombre':request.args.get('nombre'),'_id':int(request.args.get('id')),'resumen':request.args.get('resumen'),'palabras':request.args.get('palabras'),'imagen':request.args.get('imagen'),'cuerpo':request.args.get('cuerpo')}
         return render_template('modificar_articulo.html', data=obj, editor=session['user']['_id'], user=session['user'])
         
         
     @app.route('/modificar_articulo_save', methods=['GET','POST'])
     def modificar_articulo_save():
+        if session['user'] == None:
+            return render_template('opexito.html', msg="No puedes modificar artículos sino eres Editor", user=None)
+            
+        if session['user']['tipo'] == "autor" or session['user']['tipo'] == "lector":
+            return render_template('opexito.html', msg="No puedes crear artículos sino eres Editor", user=None)
+            
         image = request.files['image']
         nombre  = request.form['nombre']
         resumen = request.form['resumen']
@@ -178,6 +217,12 @@ def create_routes(app, model):
         
     @app.route('/publicar', methods=['GET'])
     def publicar():
+        if session['user'] == None:
+            return render_template('opexito.html', msg="No puedes modificar artículos sino eres Editor", user=None)
+            
+        if session['user']['tipo'] == "autor" or session['user']['tipo'] == "lector":
+            return render_template('opexito.html', msg="No puedes crear artículos sino eres Editor", user=None)
+            
         _id = int(request.args.get('id'))
         editor = int(request.args.get('editor'))
         model.publicar(_id,editor)
