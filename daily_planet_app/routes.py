@@ -155,7 +155,7 @@ def create_routes(app, model):
         resumen = request.form['resumen']
         palabras = request.form['palabras']
         cuerpo = request.form['cuerpo']
-        _id = int(request.args.get('id'))
+        _id = request.args.get('id')
         editor = request.args.get('editor')
         #File 
         # Check if the file is one of the allowed types/extensions

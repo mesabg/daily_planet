@@ -51,7 +51,7 @@
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner" role="listbox">
 											{% for articulo in articulos_favoritos %}
-											<a href="/single?id={{articulos._id}}" >
+											<a href="/single?id={{articulo._id}}" >
 											<div class="item">
 												<div class="col-md-12">
 													<center><img src="/get_image?path={{articulo.imagen}}" alt="{{articulo.nombre}}" width="300"></center>
@@ -100,7 +100,7 @@
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner" role="listbox">
 											{% for articulo in articulos %}
-											<a href="/single?id={{articulos._id}}" >
+											<a href="/single?id={{articulo._id}}" >
 											<div class="item">
 												<div class="col-md-12">
 													<center><img src="/get_image?path={{articulo.imagen}}" alt="{{articulo.nombre}}" width="300"></center>
