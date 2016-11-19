@@ -89,10 +89,7 @@ def create_routes(app, model):
     
     @app.route('/single', methods=['GET'])
     def single():
-        if type( request.args.get('id')) == int:
-            _id = request.args.get('id')
-        else:
-            _id = request.args.get('id')
+        _id = int(float(request.args.get('id')))
         l = model.getSingle(_id)
         data = None        
         for doc in l:
@@ -195,7 +192,7 @@ def create_routes(app, model):
         nombre = request.form['nombre']
         avatar = request.files['avatar']
         descripcion = request.form['descripcion']
-        _id = int(request.form['_id'])
+        _id = int(float(request.form['_id']))
         
         #modificacion
         if avatar and allowed_file(avatar.filename):
