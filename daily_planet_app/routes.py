@@ -53,13 +53,13 @@ def create_routes(app, model):
         articulos_favoritos = model.articulos_favoritos(session['user']['_id'])
         articulos = None
         articulos = model.articulos(session['user']['_id'])
-        return render_template('perfil.html', data=session['user'], articulos_favoritos = articulos_favoritos, articulos = articulos )
+        return render_template('perfil.html', user=session['user'], articulos_favoritos = articulos_favoritos, articulos = articulos )
         
     @app.route('/perfil/modificar/<username>')
     def perfil_modify(username):
         if not session['user']:
             return render_template('opexito.html', msg="No ha iniciado sesión, no puede modificar perfil", user=None)
-        return render_template('modificar_perfil.html', data=session['user'])
+        return render_template('modificar_perfil.html', user=session['user'])
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():

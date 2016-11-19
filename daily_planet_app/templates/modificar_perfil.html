@@ -15,10 +15,10 @@
 									<form class="form center-block">
 										<div class="form-group">
 											<label for="nombre">Nombre: </label>
-											<input type="text" class="form-control" placeholder="Nombre" name="nombre" value="{{data.nombre}}" required>
+											<input type="text" class="form-control" placeholder="Nombre" name="nombre" value="{{user.nombre}}" required>
 										</div>
 										<div class="container">
-											<center><img src="/get_image?path={{data.avatar}}" alt="" width="200" height="200"></center>
+											<center><img src="/get_image?path={{user.avatar}}" alt="" width="200" height="200"></center>
 										</div>
 										<div class="form-group">
 											<label for="avatar">Avatar: </label>
@@ -26,12 +26,12 @@
 										</div>
 										<div class="form-group">
 											<label for="descripcion">Descripción: </label> <br>	
-											<textarea name="descripcion" id="descripcion" cols="67" rows="10" style="color: black;" required> {{data.descripcion}} </textarea>
+											<textarea name="descripcion" id="descripcion" cols="67" rows="10" style="color: black;" required> {{user.descripcion}} </textarea>
 											
 										</div>
 										<div class="container_">
 											<div class="form-group">
-												<button type="submit" class="btn btn-primary btn-block" style="background-color: #00AA00; border-color: #00A764;" name="_id" id="_id" value="{{data._id}}" >Guardar Información</button>
+												<button type="submit" class="btn btn-primary btn-block" style="background-color: #00AA00; border-color: #00A764;" name="_id" id="_id" value="{{user._id}}" >Guardar Información</button>
 											</div>
 										</div>
 									</form>

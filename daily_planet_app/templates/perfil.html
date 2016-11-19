@@ -14,22 +14,22 @@
 							<center><h3><i>Información</i></h3></center>
 							<br><br>
 							<div class="data col-md-12">
-								<div class="col-md-4"><center><img src="/get_image?path={{data.avatar}}" alt="" width="200" height="200"></center></div>
+								<div class="col-md-4"><center><img src="/get_image?path={{user.avatar}}" alt="" width="200" height="200"></center></div>
 								<div class="col-md-4">
 									<p class="col-md-6"><b><i>Nombre:</i></b></p>
-									<p class="col-md-6">{{ data.nombre }}</p>
+									<p class="col-md-6">{{ user.nombre }}</p>
 									<p class="col-md-6"><b><i>Tipo de usuario:</i></b></p>
-									<p class="col-md-6">{{ data.tipo }}</p>
+									<p class="col-md-6">{{ user.tipo }}</p>
 								</div>
 								<div class="col-md-4">
 									<center><h3><i>Descripción</i></h3></center>
 									<div class="internal_data">
-										<p>{{ data.descripcion }}</p>
+										<p>{{ user.descripcion }}</p>
 									</div>
 								</div>
 							</div>
 							<br><br>
-							<center><a href="/perfil/modificar/{{data.nombre}}" class="btn btn-lg btn-default"><i>Modificar Perfil</i></a></center>
+							<center><a href="/perfil/modificar/{{user.nombre}}" class="btn btn-lg btn-default"><i>Modificar Perfil</i></a></center>
 						</div>
 					</div>
 					<br>
@@ -83,9 +83,9 @@
 							{% if articulos %}
 							<div class="col-md-6">
 								<div class="col-md-12 title">
-									{% if data.tipo == "editor" %}
+									{% if user.tipo == "editor" %}
 									<center><h3><i>Artículos Editados</i></h3></center>
-									{% elif data.tipo == "autor" %}
+									{% elif user.tipo == "autor" %}
 									<center><h3><i>Artículos Autor</i></h3></center>
 									{% endif %}
 								</div>
