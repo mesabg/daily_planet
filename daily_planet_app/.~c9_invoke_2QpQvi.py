@@ -44,10 +44,7 @@ def create_routes(app, model):
     def registro():
         return render_template('registro.html')
         
-    #profile
-    @app.route('/profile/<username>')
-        def profile(username):
-            url_for('.profile', username='foo')
+    
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
@@ -230,7 +227,7 @@ def create_routes(app, model):
 
 
     @app.route('/upload_comentario_recursive', methods=['GET', 'POST'])
-    def upload_comentario_recursive():
+        id_usuario = int((request.args.get('id_usuario')))
         id_usuario = int(float(request.args.get('id_usuario')))
         id_articulo = int(float(request.args.get('id_articulo')))
         id_padre = int(float(request.args.get('id_padre')))

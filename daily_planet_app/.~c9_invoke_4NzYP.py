@@ -44,10 +44,7 @@ def create_routes(app, model):
     def registro():
         return render_template('registro.html')
         
-    #profile
-    @app.route('/profile/<username>')
-        def profile(username):
-            url_for('.profile', username='foo')
+    
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
@@ -228,7 +225,7 @@ def create_routes(app, model):
         data = json.dumps(model.upload_comentario(id_articulo, id_usuario, text))
         return Response(data, status=200, headers=None, mimetype='application/json')
 
-
+    @app.route('/upload_comentario_recursive', methods=['GET', 'POST'])
     @app.route('/upload_comentario_recursive', methods=['GET', 'POST'])
     def upload_comentario_recursive():
         id_usuario = int(float(request.args.get('id_usuario')))

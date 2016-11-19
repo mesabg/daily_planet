@@ -44,10 +44,7 @@ def create_routes(app, model):
     def registro():
         return render_template('registro.html')
         
-    #profile
-    @app.route('/profile/<username>')
-        def profile(username):
-            url_for('.profile', username='foo')
+    
         
     @app.route('/registro_save', methods=['POST'])
     def registro_save():
@@ -154,7 +151,7 @@ def create_routes(app, model):
 
         model.modificar_no_image(_id,nombre,resumen,palabras,cuerpo,editor)
         return render_template('opexito.html',msg="Modificación exitosa")
-
+        
         
     @app.route('/publicar', methods=['GET'])
     def publicar():

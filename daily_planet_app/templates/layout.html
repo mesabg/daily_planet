@@ -65,7 +65,7 @@
 					<div class="header-top-right">
 						<form>
 							{% if user %}
-								<a href="/perfil" class="btn fix-btn">{{ user.nombre }}</a>
+								<a href="/profile/{{user.nombre}}" class="btn fix-btn">{{ user.nombre }}</a>
 							{% endif %}
 							<input type="text" placeholder=" " required="">
 							<input type="submit" value=" ">
