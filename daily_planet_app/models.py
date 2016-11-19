@@ -181,11 +181,15 @@ class Model:
         
         
     def modificar_perfil(self,_id,nombre,descripcion,avatar):
-        self.db.usuarios.update({'_id':_id},{'$set':{'nombre':nombre,'descripcion':descripcion,'avatar':avatar}})
+        algo = self.db.usuarios.update({'_id':_id},{'$set':{'nombre':nombre,'descripcion':descripcion,'avatar':avatar}})
+        print("-----------------------------------")
+        print(algo)
         return True
     
     def modificar_perfil_no_image(self,_id, nombre, descripcion):
         self.db.usuarios.update({'_id':_id},{'$set':{'nombre':nombre,'descripcion':descripcion}})
+        print("-----------------------------------")
+        print(algo)
         return True
     
     def articulos(self,_id):
