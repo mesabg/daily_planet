@@ -88,10 +88,10 @@ def create_routes(app, model):
     
     @app.route('/single', methods=['GET'])
     def single():
-        if type( request.args.get('id'))== int:
+        if type( request.args.get('id')) == int:
             _id = request.args.get('id')
         else:
-            _id = int(request.args.get('id'))
+            _id = request.args.get('id')
         l = model.getSingle(_id)
         data = None        
         for doc in l:
@@ -155,7 +155,7 @@ def create_routes(app, model):
         resumen = request.form['resumen']
         palabras = request.form['palabras']
         cuerpo = request.form['cuerpo']
-        _id = request.args.get('id')
+        _id = int(request.args.get('id'))
         editor = request.args.get('editor')
         #File 
         # Check if the file is one of the allowed types/extensions
@@ -194,7 +194,7 @@ def create_routes(app, model):
         nombre = request.form['nombre']
         avatar = request.files['avatar']
         descripcion = request.form['descripcion']
-        _id = int(request.form['_id'])
+        _id = request.form['_id']
         
         #modificacion
         if avatar and allowed_file(avatar.filename):
