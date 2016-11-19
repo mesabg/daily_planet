@@ -162,11 +162,11 @@ def create_routes(app, model):
             # the upload folder we setup
             image.save(os.path.join(app.config['UPLOAD_FOLDER']+'/art', filename))
             model.modificar(_id,nombre,resumen,palabras,'local_images/art/'+filename,cuerpo,editor)
-            session['user']=get_user_data(_id)
+            session['user']=model.get_user_data(_id)
             return render_template('opexito.html',msg="Modificación exitosa", user=session['user'])
 
         model.modificar_no_image(_id,nombre,resumen,palabras,cuerpo,editor)
-        session['user']=get_user_data(_id)
+        session['user']=model.get_user_data(_id)
         return render_template('opexito.html',msg="Modificación exitosa")
 
         
@@ -202,10 +202,10 @@ def create_routes(app, model):
             # the upload folder we setup
             avatar.save(os.path.join(app.config['UPLOAD_FOLDER']+'/user', filename))
             model.modificar_perfil(_id, nombre, descripcion, 'local_images/user/'+filename )
-            session['user']=get_user_data(_id)
+            session['user']= model.get_user_data(_id)
             return render_template('opexito.html',msg="Modificación de perfil exitosa !", user=session['user'])
         model.modificar_perfil_no_image(_id, nombre, descripcion)
-        session['user']=get_user_data(_id)
+        session['user']=model.get_user_data(_id)
         return render_template('opexito.html',msg="Modificación de perfil exitosa sin imagen !")
             
 
