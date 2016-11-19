@@ -15,10 +15,10 @@ def create_routes(app, model):
     session = Session()
     session['user'] = None
     
-    app.config['MAIL_SERVER']='smtp.mail.yahoo.com'
+    app.config['MAIL_SERVER']='smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = 'moises.berenguer@yahoo.com'
-    app.config['MAIL_PASSWORD'] = '**05t1-zoia!!'
+    app.config['MAIL_USERNAME'] = 'daily.planet.email.ati@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'ati123456'
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     
@@ -109,8 +109,10 @@ def create_routes(app, model):
     @app.route('/single', methods=['GET'])
     def single():
         _id = int(float(request.args.get('id')))
-        #if session['user'] == None:
-            
+        if session['user'] == None:
+            today = datetime.datetime.now()
+            if not model.VerloInvitado(_id,today):
+                return render_template('opexito.html', msg="Lo siento los invitados solo pueden acceder a los artículos del día." ,user=session['user'])
         l = model.getSingle(_id)
         data = None        
         for doc in l:

@@ -34,6 +34,15 @@ class Model:
                         array.append(save[i])
         return array
         
+    def VerloInvitado(self,_id,today):
+        articulo = self.db.articulos.find_one({'_id':_id},{'fecha':1})
+        fecha_pub = str(articulo['fecha']).split(" ")
+        fecha_today = str(today).split(" ")
+        
+        if fecha_pub[0] in fecha_today[0]:
+            return True
+        else:
+            return False
         
     def getSixFeedPubInv(self,inicio,tipo,busqueda,today):
         if tipo == "Fecha":
