@@ -72,7 +72,7 @@ class Model:
                 print(fecha_pub[0])
                 print(fecha_today[0])
                 print("--------------------------------------")
-                if save[i]['publicado'] and fecha_pub[0] == fecha_today[0]:
+                if save[i]['publicado'] and fecha_pub[0] in fecha_today[0]:
                     array.append(save[i])
         return array
         
