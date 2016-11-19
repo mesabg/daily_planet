@@ -237,6 +237,8 @@ def create_routes(app, model):
     @app.route('/get_image', methods=['GET'])
     def get_image():
         path = 'static/' + request.args.get('path')
+        print("---------------------------")
+        print(path)
         spli = path.split(".")
         valor = spli[len(spli)-1] 
         return send_file(path, mimetype='image/'+valor)
@@ -246,6 +248,8 @@ def create_routes(app, model):
     def get_image_username():
         name = request.args.get('name')
         path = 'static/' + model.get_image_username(name)
+        print("---------------------------")
+        print(path)
         spli = path.split(".")
         valor = spli[len(spli)-1] 
         return send_file(path, mimetype='image/'+valor)
