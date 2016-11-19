@@ -97,7 +97,7 @@ def create_routes(app, model):
         email = request.form['recoverpass_email']
         info = model.get_info(email)
         
-        if password:
+        if info:
             msg = Message("[Daily Planet - Recuperación de contraseña]" + password, sender="moises.berenguer@gmail.com.com", recipients=[email])
             msg.body = "Estimado " + info['nombre'] + ".\n" + " Se le informa que su contraseña para acceder a nuestra plataforma es la siguiente: " + info['password']
             mail.send(msg)
