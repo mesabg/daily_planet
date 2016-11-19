@@ -50,7 +50,10 @@ class Model:
                 if busqueda not in lista['nombre'].lower():
                     continue
                 elif lista['publicado']:
-                    array.append({'_id':lista['_id',],'imagen':lista['imagen'], 'nombre':lista['nombre'], 'resumen':lista['resumen'],'publicado':lista['publicado']})
+                    fecha_pub = str(save[i]['fecha']).split(" ")
+                    fecha_today = str(today).split(" ")
+                    if fecha_pub[0] in fecha_today[0]:
+                        array.append({'_id':lista['_id'],'imagen':lista['imagen'], 'nombre':lista['nombre'], 'resumen':lista['resumen'],'publicado':lista['publicado']})
         else:
             for i in range(inicio, inicio+6):
                 if len(save) == i:
