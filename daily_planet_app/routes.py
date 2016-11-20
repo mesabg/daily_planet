@@ -113,10 +113,13 @@ def create_routes(app, model):
             if not model.VerloInvitado(_id,today):
                 return render_template('opexito.html', msg="Lo siento los invitados solo pueden acceder a los artículos del día." ,user=session['user'])
         l = model.getSingle(_id)
+        print("----------------------------------------------------")
+        print(l)
         data = None        
         for doc in l:
             data = doc
-        
+        print(data)
+        print("----------------------------------------------------")
         if session['user'] == None:
             return render_template('single.html', item=data, user=session['user'])
         else:
