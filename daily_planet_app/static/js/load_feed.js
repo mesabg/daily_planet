@@ -18,6 +18,7 @@ function load_more(){
     })
     .done(function(data) {
         /*Render*/
+        console.log(data);
         for(var i=0; i<data.length;i++){
             var div = $('<div class="col-md-4 banner-bottom-grid"> <a href="/single?id='+data[i]._id+'" > <img src="/get_image?path='+data[i].imagen+'"/>  </a><h4>'+data[i].nombre+'</h4> <p>'+data[i].resumen+'</p> </div>');
             $("#feed").append(div);
