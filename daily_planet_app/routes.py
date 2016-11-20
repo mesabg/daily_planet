@@ -129,7 +129,7 @@ def create_routes(app, model):
         if session['user'] == None:
              return render_template('opexito.html', msg="No puedes agregar a favoritos si eres Invitado", user=None)
         _id = request.args.get('id')
-        add_favorito = model.addfav(_id,session['user']['_id'])
+        add_favorito = model.addfav(_id, int(float(session['user']['_id'])))
         if add_favorito:
             return render_template('opexito.html',msg="Has agregado a favoritos este artículo")
         return Response(add_favorito, status=200)
