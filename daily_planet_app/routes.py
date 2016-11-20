@@ -313,6 +313,7 @@ def create_routes(app, model):
         path = 'static/' + request.args.get('path')
         spli = path.split(".")
         valor = spli[len(spli)-1] 
+        print(path)
         return send_file(path, mimetype='image/'+valor)
         #http://localhost:5000/get_image?path=local_images/art/2.jpg
         
