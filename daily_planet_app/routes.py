@@ -115,10 +115,11 @@ def create_routes(app, model):
         l = model.getSingle(_id)
         print("----------------------------------------------------")
         print(l)
-        data = None        
-        for doc in l:
-            data = doc
-        print(data)
+       # data = None        
+       #for doc in l:
+        #    data = doc
+        #print(data)
+        data = l
         print("----------------------------------------------------")
         if session['user'] == None:
             return render_template('single.html', item=data, user=session['user'])

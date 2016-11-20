@@ -116,7 +116,8 @@ class Model:
     
         
     def getSingle(self, _id_):
-        return self.db.articulos.aggregate([ {'$match': {'_id': {'$eq':_id_}}} ,{ '$project':{'_id':1, 'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'_id':1, 'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1  }}, { '$unwind': '$autor' } ])
+        return self.db.articulos.find_one({'_id':_id_})
+        #return self.db.articulos.aggregate([ {'$match': {'_id': {'$eq':_id_}}} ,{ '$project':{'_id':1, 'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'_id':1, 'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1, 'imagen':1  }}, { '$unwind': '$autor' } ])
         #return self.db.articulos.find_one({'_id':{'$eq':_id_}})
         #db.articulos.aggregate([ {'$match': {'_id': {'$eq':1}}} ,{ '$project':{'autor':1, 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1} }, {'$lookup':{ 'from':'usuarios', 'localField':'autor', 'foreignField':'_id', 'as':'autor_' }},  {'$project':{'autor':'$autor_.nombre', 'fecha':1, 'comentarios':1, 'nombre':1, 'cuerpo':1, 'categoria':1  }} ])
         
