@@ -107,7 +107,7 @@ def create_routes(app, model):
     
     @app.route('/single', methods=['GET'])
     def single():
-        _id = int(float(request.args.get('id')))
+        _id = int(request.args.get('id'))
         if session['user'] == None:
             today = datetime.datetime.now()
             if not model.VerloInvitado(_id,today):
