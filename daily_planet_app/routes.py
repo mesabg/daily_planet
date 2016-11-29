@@ -268,8 +268,7 @@ def create_routes(app, model):
             return render_template('opexito.html',msg="Modificación de perfil exitosa !", user=session['user'])
         model.modificar_perfil_no_image(_id, nombre, descripcion)
         session['user']=model.get_user_data(_id)
-        return render_template('opexito.html',msg="Modificación de perfil exitosa sin imagen !")
-            
+        return render_template('opexito.html',msg="Modificación de perfil exitosa sin imagen !", user=session["user"])
 
 
     @app.route('/get_no_pub', methods=['GET'])
@@ -325,6 +324,9 @@ def create_routes(app, model):
     def upload_comentario():
         id_usuario = int(request.args.get('id_usuario'))
         id_articulo = int(request.args.get('id_articulo'))
+        if not id_usuario:
+            no_usuario = {'_id':-1}
+            Response(json.dumps(no_usuario), status=200, headers=None, mimetype='application/json')
         #text = request.args.get('comentario_cuerpo')
         text = request.form['comentario_cuerpo']
         data = json.dumps(model.upload_comentario(id_articulo, id_usuario, text))
@@ -341,3 +343,6 @@ def create_routes(app, model):
         data = json.dumps(model.upload_comentario_recursive(id_articulo, id_usuario, id_padre, text))
         return Response(data, status=200, headers=None, mimetype='application/json')
 
+    @app.route('/suscribete', methods=['POST'])
+    def suscribete():
+        return render_template('opexito.html', msg="Está suscrito, gracias por formar parte del grupo Daily Planet !", user=session["user"])

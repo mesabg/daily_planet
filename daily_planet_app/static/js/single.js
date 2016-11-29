@@ -20,6 +20,13 @@ function comment(){
     if ( $("#comentario").val()=="" ) return;
     var id_articulo = parseInt($("#upload_comentario").attr('id_articulo'));
     var id_usuario = parseInt($("#upload_comentario").attr('id_usuario'));
+
+    if (!id_usuario){
+        alert('Es un usuario invitado, no puede comentar !');
+        return;
+    }
+
+
     $.ajax({
         url: '/upload_comentario?id_articulo='+id_articulo+'&id_usuario='+id_usuario,
         dataType: 'json',
@@ -28,7 +35,11 @@ function comment(){
     })
     .done(function(data) {
         /*Render*/
-        
+        if (data._id == -1){
+            alert('Es un usuario invitado, no puede comentar !');
+            return;
+        }
+
         var div = $('<div class="media response-info"><div class="media-left response-text-left"><img class="media-object" src="/get_image?name='+data.nombre+'" width="100" height="100" alt=""> <h5>' + data.nombre +'</h5></div>    <div class="media-body response-text-right">  <p>'+data.cuerpo+'</p>   <ul> <li>' + data.fecha + '</li> <li><button class="btn-responder btn btn-default">Responder</button></li> </ul> </div>  </div>'   )
         
         $($($($(div.children('div')[1]).children('ul')[0]).children('li')[1]).children('button')[0]).click(function(){
@@ -51,12 +62,16 @@ function comment(){
 
 
 function comment_recursive(padre,texto,boton){
-	console.log(texto, boton);
 	if (texto.val()=="") return;
 	var id_articulo = parseInt(boton.attr('id_articulo'));
     var id_usuario = parseInt(boton.attr('id_usuario'));
     var id_padre = parseInt(boton.attr('id_padre'));
     
+    if (!id_usuario){
+        alert('Es un usuario invitado, no puede comentar !');
+        return;
+    }
+
     
     $.ajax({
         url: '/upload_comentario_recursive?id_articulo='+id_articulo+'&id_usuario='+id_usuario+'&id_padre='+id_padre,
